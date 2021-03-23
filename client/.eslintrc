@@ -7,10 +7,6 @@
     "document": true
   },
   "rules": {
-    "import/no-unresolved": [
-      2, 
-      { "caseSensitive": false }
-    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -19,9 +15,10 @@
     ]
   },
   "settings": {
+    "import/no-unresolved": "off"
     "import/resolver": {
       "node": {
-        "paths": ["./src"],
+        "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
