@@ -1,13 +1,14 @@
 import React from 'react';
 import GlobalStyle from 'theme/GlobalStyle';
 
-import First from 'components/First';
+import Form from 'Form/Form';
 
 const Root = () => (
   <>
     <GlobalStyle />
-
-    <First />
+    <>
+      <Form />
+    </>
   </>
 );
 
