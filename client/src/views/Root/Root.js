@@ -48,8 +48,6 @@ const Root = () => {
           </StyledFabButton>
         </AppBar>
 
-        <Form />
-
         <Grow in>
           <Grid container spacing={3}>
             <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
@@ -57,6 +55,8 @@ const Root = () => {
             </Grid>
           </Grid>
         </Grow>
+
+        <Form />
       </Container>
     </>
   );
