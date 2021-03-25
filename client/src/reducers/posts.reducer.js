@@ -3,7 +3,7 @@ const posts = (state = [], action) => {
     case 'FETCH_ALL':
       return action.payload;
     case 'CREATE':
-      return state;
+      return [...state, action.payload];
     default:
       return state;
   }
