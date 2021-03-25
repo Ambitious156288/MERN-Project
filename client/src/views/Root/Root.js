@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
+
+import { useDispatch } from 'react-redux';
+import { getPosts } from 'actions/posts.action';
 
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,32 +26,40 @@ const StyledFabButton = styled(Fab)`
   z-index: 1;
 `;
 
-const Root = () => (
-  <>
-    <GlobalStyle />
+const Root = () => {
+  const dispatch = useDispatch();
 
-    <Container maxWidth="lg">
-      <AppBar position="static">
-        <Typography variant="h2" align="center">
-          memorable events
-        </Typography>
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-        <StyledFabButton color="secondary" aria-label="add">
-          <AddIcon fontSize="large" color="primary" />
-        </StyledFabButton>
-      </AppBar>
+  return (
+    <>
+      <GlobalStyle />
 
-      <Form />
+      <Container maxWidth="lg">
+        <AppBar position="static">
+          <Typography variant="h2" align="center">
+            memorable events
+          </Typography>
 
-      <Grow in>
-        <Grid container spacing={3}>
-          <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
-            <Posts />
+          <StyledFabButton color="secondary" aria-label="add">
+            <AddIcon fontSize="large" color="primary" />
+          </StyledFabButton>
+        </AppBar>
+
+        <Form />
+
+        <Grow in>
+          <Grid container spacing={3}>
+            <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
+              <Posts />
+            </Grid>
           </Grid>
-        </Grid>
-      </Grow>
-    </Container>
-  </>
-);
+        </Grow>
+      </Container>
+    </>
+  );
+};
 
 export default Root;
