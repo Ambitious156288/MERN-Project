@@ -9,7 +9,13 @@ import { useDispatch } from 'react-redux';
 import { createPost } from 'actions/posts.action';
 
 const Form = () => {
-  const [postData, setPostData] = useState({ creator: '', title: '', description: '', tags: '' });
+  const [postData, setPostData] = useState({
+    creator: '',
+    title: '',
+    description: '',
+    tags: '',
+    selectedFile: '',
+  });
 
   const dispatch = useDispatch();
 
@@ -25,7 +31,6 @@ const Form = () => {
     <>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Typography variant="h6">Creating a Memorable Event</Typography>
-
         <TextField
           name="creator"
           variant="outlined"
@@ -72,7 +77,6 @@ const Form = () => {
         <Button variant="contained" color="primary" size="large" type="submit" fullWidth>
           Submit
         </Button>
-
         <Button variant="contained" color="secondary" size="small" ocClick={clear}>
           Clear
         </Button>
