@@ -15,7 +15,7 @@
     ]
   },
   "settings": {
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
     "import/resolver": {
       "node": {
         "paths": ["src"],
