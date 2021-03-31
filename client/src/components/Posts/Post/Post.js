@@ -13,11 +13,25 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
+import image from 'utils/images/memories.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
+
 const Post = ({ post }) => {
+  const classes = useStyles();
+
   return (
     <>
       <Card>
-        <CardMedia image={post.selectedFile} title={post.title} />
+        <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div>
           <h1>desc:{post.description} ///</h1>
           <Typography variant="h6">{post.creator}</Typography>
@@ -58,7 +72,8 @@ const Post = ({ post }) => {
       <hr />
       <Card>
         <CardActionArea>
-          <CardMedia image={post.selectedFile} title="Contemplative Reptile" />
+          <CardMedia image={image} title="Contemplative Reptile" />
+          {/* <CardMedia image={post.selectedFile} title="Contemplative Reptile" /> */}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               aa
