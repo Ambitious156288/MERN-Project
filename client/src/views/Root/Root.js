@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 
@@ -27,6 +27,7 @@ const StyledFabButton = styled(Fab)`
 `;
 
 const Root = () => {
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,12 +52,12 @@ const Root = () => {
         <Grow in>
           <Grid container spacing={3}>
             <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
-              <Posts />
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Grow>
 
-        <Form />
+        <Form currentId={currentId} setCurrentId={setCurrentId} />
       </Container>
     </>
   );

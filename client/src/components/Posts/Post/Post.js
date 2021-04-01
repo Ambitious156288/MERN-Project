@@ -13,7 +13,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import image from 'utils/images/memories.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -25,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
 
   return (
@@ -33,13 +32,13 @@ const Post = ({ post }) => {
       <Card>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div>
-          <h1>desc:{post.description} ///</h1>
+          <h1>desc:{post.description}</h1>
           <Typography variant="h6">{post.creator}</Typography>
           <Typography variant="h6">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
 
         <div>
-          <Button style={{ color: 'white' }} size="small" onClick={() => {}}>
+          <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(post._id)}>
             <ExpandMoreIcon fontSize="default" />
           </Button>
         </div>
@@ -66,29 +65,6 @@ const Post = ({ post }) => {
           <Button size="small" color="primary" ocClick={() => {}}>
             <DeleteForeverIcon fontSize="small" />
             Delete
-          </Button>
-        </CardActions>
-      </Card>
-      <hr />
-      <Card>
-        <CardActionArea>
-          <CardMedia image={image} title="Contemplative Reptile" />
-          {/* <CardMedia image={post.selectedFile} title="Contemplative Reptile" /> */}
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              aa
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              aaaaaaaa
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
           </Button>
         </CardActions>
       </Card>
