@@ -34,14 +34,19 @@ const Form = ({ currentId, setCurrentId }) => {
     if (currentId) {
       dispatch(updatePost(currentId, postData));
     } else dispatch(createPost(postData));
+
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({ creator: '', title: '', description: '', tags: '', selectedFile: '' });
+  };
 
   return (
     <>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <Typography variant="h6">Creating a Memorable Event</Typography>
+        <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
         <TextField
           name="creator"
           variant="outlined"
@@ -85,10 +90,17 @@ const Form = ({ currentId, setCurrentId }) => {
           onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
         />
 
-        <Button variant="contained" color="primary" size="large" type="submit" fullWidth>
+        <Button
+          onClick={() => {}}
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          fullWidth
+        >
           Submit
         </Button>
-        <Button variant="contained" color="secondary" size="small" ocClick={clear}>
+        <Button variant="contained" color="secondary" size="small" onClick={clear}>
           Clear
         </Button>
       </form>

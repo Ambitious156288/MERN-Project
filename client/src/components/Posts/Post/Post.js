@@ -32,6 +32,7 @@ const Post = ({ post, setCurrentId }) => {
       <Card>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div>
+          <h1>title:{post.title}</h1>
           <h1>desc:{post.description}</h1>
           <Typography variant="h6">{post.creator}</Typography>
           <Typography variant="h6">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
@@ -56,13 +57,13 @@ const Post = ({ post, setCurrentId }) => {
         </CardContent>
 
         <CardActions>
-          <Button size="small" color="primary" ocClick={() => {}}>
+          <Button size="small" color="primary" onClick={() => {}}>
             <FingerprintIcon fontSize="small" />
             Like
             {post.likeCount}
           </Button>
 
-          <Button size="small" color="primary" ocClick={() => {}}>
+          <Button size="small" color="primary" onClick={() => {}}>
             <DeleteForeverIcon fontSize="small" />
             Delete
           </Button>

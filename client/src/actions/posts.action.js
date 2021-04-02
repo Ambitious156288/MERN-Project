@@ -9,7 +9,7 @@ export const getPosts = () => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
 
@@ -22,7 +22,7 @@ export const createPost = post => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
 
@@ -35,6 +35,6 @@ export const updatePost = (id, post) => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
