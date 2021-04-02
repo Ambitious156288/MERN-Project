@@ -15,6 +15,9 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useDispatch } from 'react-redux';
+import { deletePost } from 'actions/posts.action';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -26,6 +29,8 @@ const useStyles = makeStyles({
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -63,7 +68,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.likeCount}
           </Button>
 
-          <Button size="small" color="primary" onClick={() => {}}>
+          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
             <DeleteForeverIcon fontSize="small" />
             Delete
           </Button>

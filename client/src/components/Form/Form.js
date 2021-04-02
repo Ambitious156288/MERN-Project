@@ -28,6 +28,11 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({ creator: '', title: '', description: '', tags: '', selectedFile: '' });
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -36,11 +41,6 @@ const Form = ({ currentId, setCurrentId }) => {
     } else dispatch(createPost(postData));
 
     clear();
-  };
-
-  const clear = () => {
-    setCurrentId(null);
-    setPostData({ creator: '', title: '', description: '', tags: '', selectedFile: '' });
   };
 
   return (
@@ -90,14 +90,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
         />
 
-        <Button
-          onClick={() => {}}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
-          fullWidth
-        >
+        <Button variant="contained" color="primary" size="large" type="submit" fullWidth>
           Submit
         </Button>
         <Button variant="contained" color="secondary" size="small" onClick={clear}>
