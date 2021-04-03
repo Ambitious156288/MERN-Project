@@ -16,7 +16,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from 'react-redux';
-import { deletePost } from 'actions/posts.action';
+import { deletePost, likePost } from 'actions/posts.action';
 
 const useStyles = makeStyles({
   root: {
@@ -62,7 +62,7 @@ const Post = ({ post, setCurrentId }) => {
         </CardContent>
 
         <CardActions>
-          <Button size="small" color="primary" onClick={() => {}}>
+          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
             <FingerprintIcon fontSize="small" />
             Like
             {post.likeCount}
