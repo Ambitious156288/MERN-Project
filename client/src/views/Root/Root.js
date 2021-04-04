@@ -17,16 +17,36 @@ import Grid from '@material-ui/core/Grid';
 import Form from 'components/Form/Form';
 import Posts from 'components/Posts/Posts';
 
-const StyledFabButton = styled(Fab)`
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  z-index: 1;
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+
+const StyledTypography = styled(Typography)`
+  letter-spacing: 2px;
 `;
 
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  fabButton: {
+    position: 'absolute',
+    zIndex: 1,
+    top: -40,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+  },
+}));
+
 const Root = () => {
+  const classes = useStyles();
+
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
@@ -39,16 +59,6 @@ const Root = () => {
       <GlobalStyle />
 
       <Container maxWidth="lg">
-        <AppBar position="static">
-          <Typography variant="h2" align="center">
-            memorable events
-          </Typography>
-
-          <StyledFabButton color="secondary" aria-label="add">
-            <AddIcon fontSize="large" color="primary" />
-          </StyledFabButton>
-        </AppBar>
-
         <Grow in>
           <Grid container spacing={3}>
             <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
@@ -58,6 +68,16 @@ const Root = () => {
         </Grow>
 
         <Form currentId={currentId} setCurrentId={setCurrentId} />
+
+        <AppBar position="fixed" color="primary" className={classes.appBar}>
+          <Toolbar>
+            <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+              <AddIcon fontSize="large" color="primary" />
+            </Fab>
+            <div className={classes.grow} />
+            <StyledTypography variant="h2">memorable events</StyledTypography>
+          </Toolbar>
+        </AppBar>
       </Container>
     </>
   );
