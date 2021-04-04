@@ -81,7 +81,7 @@ const Form = ({ currentId, setCurrentId }) => {
           multiline
           rows={4}
           value={postData.tags}
-          onChange={e => setPostData({ ...postData, tags: e.target.value })}
+          onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
 
         <FileBase

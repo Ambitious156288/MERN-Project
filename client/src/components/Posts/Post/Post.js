@@ -64,13 +64,13 @@ const Post = ({ post, setCurrentId }) => {
         <CardActions>
           <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
             <FingerprintIcon fontSize="small" />
-            Like
+            &nbsp; Like &nbsp;
             {post.likeCount}
           </Button>
 
           <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
             <DeleteForeverIcon fontSize="small" />
-            Delete
+            &nbsp; Delete
           </Button>
         </CardActions>
       </Card>
