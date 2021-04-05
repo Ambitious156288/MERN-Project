@@ -1,10 +1,13 @@
 import React from 'react';
+// import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import Post from 'components/Posts/Post/Post';
+
+// const styledGridCenter = styled(Grid)``;
 
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector(state => state.posts);
@@ -16,9 +19,9 @@ const Posts = ({ setCurrentId }) => {
       {!posts.length ? (
         <LinearProgress />
       ) : (
-        <Grid container alignItems="stretch" spacing={2}>
+        <Grid container spacing={2}>
           {posts.map(post => (
-            <Grid key={post._id} item xs={12} sm={6}>
+            <Grid key={post._id} item sm={6} xs={12}>
               <Post post={post} setCurrentId={setCurrentId} />
             </Grid>
           ))}

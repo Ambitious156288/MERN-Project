@@ -60,25 +60,20 @@ const Root = () => {
 
       <Container maxWidth="lg">
         <Grow in>
-          <Grid container spacing={3}>
-            <Grid item justifyContent="space-between" alignItems="streched" spacing={3}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
+          <Posts setCurrentId={setCurrentId} />
         </Grow>
 
         <Form currentId={currentId} setCurrentId={setCurrentId} />
-
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
-          <Toolbar>
-            <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-              <AddIcon fontSize="large" color="primary" />
-            </Fab>
-            <div className={classes.grow} />
-            <StyledTypography variant="h2">memorable events</StyledTypography>
-          </Toolbar>
-        </AppBar>
       </Container>
+
+      <AppBar position="fixed" color="primary" className={classes.appBar}>
+        <Toolbar>
+          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+            <AddIcon fontSize="large" color="primary" />
+          </Fab>
+          <StyledTypography variant="h2">memorable events</StyledTypography>
+        </Toolbar>
+      </AppBar>
     </>
   );
 };
