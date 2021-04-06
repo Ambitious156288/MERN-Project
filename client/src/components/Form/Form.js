@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from 'actions/posts.action';
 import { useSelector } from 'react-redux';
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
@@ -41,6 +41,8 @@ const Form = ({ currentId, setCurrentId }) => {
     } else dispatch(createPost(postData));
 
     clear();
+
+    modalCloseFn();
   };
 
   return (

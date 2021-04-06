@@ -8,8 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditIcon from '@material-ui/icons/Edit';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
@@ -21,9 +20,6 @@ import { deletePost, likePost } from 'actions/posts.action';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-  },
-  media: {
-    height: 140,
   },
   card: {
     display: 'flex',
@@ -66,7 +62,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -81,8 +77,15 @@ const Post = ({ post, setCurrentId }) => {
         </div>
 
         <div className={classes.overlay2}>
-          <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(post._id)}>
-            <ExpandMoreIcon fontSize="default" />
+          <Button
+            style={{ color: 'white' }}
+            size="small"
+            onClick={() => {
+              setCurrentId(post._id);
+              modalOpenFn();
+            }}
+          >
+            <EditIcon fontSize="default" />
           </Button>
         </div>
 
