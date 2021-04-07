@@ -17,6 +17,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from 'actions/posts.action';
 
+import Box from '@material-ui/core/Box';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -62,6 +64,14 @@ const useStyles = makeStyles({
   },
 });
 
+const defaultProps = {
+  bgcolor: 'text.paper',
+  borderColor: 'primary.main',
+  m: 0.7,
+  border: 1,
+  padding: 0.5,
+};
+
 const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
 
@@ -72,36 +82,38 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
       <Card className={classes.card}>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div className={classes.overlay}>
-          <Typography variant="h6">{post.creator}</Typography>
+          <Typography variant="h3">{post.creator}</Typography>
+          <br />
           <Typography variant="body2">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
 
         <div className={classes.overlay2}>
           <Button
             style={{ color: 'white' }}
-            size="small"
             onClick={() => {
               setCurrentId(post._id);
               modalOpenFn();
             }}
           >
-            <EditIcon fontSize="default" />
+            <EditIcon fontSize="large" />
           </Button>
         </div>
 
         <div className={classes.details}>
-          <Typography variant="body2" color="textSecondary" component="h2">
-            {post.tags.map(tag => `#${tag} `)}
+          <Typography variant="h6" color="primary">
+            <Box display="flex" justifyContent="center">
+              {post.tags.map(tag => (
+                <Box borderRadius="borderRadius" {...defaultProps}>{`#${tag} `}</Box>
+              ))}
+            </Box>
           </Typography>
         </div>
 
-        <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+        <Typography className={classes.title} gutterBottom variant="h4" component="h2">
           {post.title}
         </Typography>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {post.description}
-          </Typography>
+          <Typography variant="h5">{post.description}</Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
           <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
