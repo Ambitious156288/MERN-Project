@@ -27,6 +27,10 @@ const StyledTypography = styled(Typography)`
   letter-spacing: 2px;
 `;
 
+const StyledContainer = styled(Container)`
+  margin-bottom: 110px;
+`;
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     top: 'auto',
@@ -82,7 +86,7 @@ const Root = () => {
     <>
       <GlobalStyle />
 
-      <Container maxWidth="lg">
+      <StyledContainer maxWidth="lg">
         <Grow in>
           <Posts setCurrentId={setCurrentId} modalOpenFn={() => handleOpen()} />
         </Grow>
@@ -109,7 +113,7 @@ const Root = () => {
             </div>
           </Fade>
         </Modal>
-      </Container>
+      </StyledContainer>
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>

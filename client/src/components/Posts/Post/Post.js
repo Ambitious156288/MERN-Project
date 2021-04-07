@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import Card from '@material-ui/core/Card';
@@ -129,6 +129,12 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
       </Card>
     </>
   );
+};
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+  setCurrentId: PropTypes.number.isRequired,
+  modalOpenFn: PropTypes.func.isRequired,
 };
 
 export default Post;
