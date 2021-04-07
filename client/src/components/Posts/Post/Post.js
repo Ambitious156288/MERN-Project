@@ -33,7 +33,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%',
+    paddingTop: '37%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
   },
@@ -112,15 +112,18 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
         <Typography className={classes.title} gutterBottom variant="h4" component="h2">
           {post.title}
         </Typography>
+
         <CardContent>
           <Typography variant="h5">{post.description}</Typography>
         </CardContent>
+
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
-            <FingerprintIcon fontSize="small" /> &nbsp; Like &nbsp; {post.likeCount}
+          <Button size="large" color="primary" onClick={() => dispatch(likePost(post._id))}>
+            <FingerprintIcon fontSize="large" /> &nbsp; Like &nbsp; {post.likeCount}
           </Button>
-          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-            <DeleteForeverIcon fontSize="small" /> &nbsp; Delete
+
+          <Button size="large" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+            <DeleteForeverIcon fontSize="large" /> &nbsp; Delete
           </Button>
         </CardActions>
       </Card>
