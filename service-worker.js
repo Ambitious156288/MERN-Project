@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "ambitious156288.github.io/MERN-Project/precache-manifest.8d7504dd797f6b574a2e64c0f9eb0c3f.js"
+  "/MERN-Project/precache-manifest.970305fc3ae903d2c744224cf0690119.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("ambitious156288.github.io/MERN-Project/index.html", {
+workbox.routing.registerNavigationRoute("/MERN-Project/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
