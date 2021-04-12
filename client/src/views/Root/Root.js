@@ -6,51 +6,17 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from 'actions/posts.action';
 
 import Container from '@material-ui/core/Container';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 import Grow from '@material-ui/core/Grow';
-
 import Posts from 'components/Posts/Posts';
-
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-
 import ModalFrom from 'components/ModalForm/ModalForm';
 
-const StyledTypography = styled(Typography)`
-  letter-spacing: 2px;
-`;
+import Navbar from 'components/Navbar/Navbar';
 
 const StyledContainer = styled(Container)`
   margin-bottom: 110px;
 `;
 
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    top: 'auto',
-    bottom: 0,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    top: -40,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
-  },
-}));
-
 const Root = () => {
-  const classes = useStyles();
-
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
@@ -85,14 +51,7 @@ const Root = () => {
         />
       </StyledContainer>
 
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar>
-          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-            <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
-          </Fab>
-          <StyledTypography variant="h2">memorable events</StyledTypography>
-        </Toolbar>
-      </AppBar>
+      <Navbar handleOpen={() => handleOpen()} />
     </>
   );
 };
