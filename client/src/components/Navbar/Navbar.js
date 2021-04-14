@@ -2,23 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-const StyledTypography = styled(Typography)`
-  letter-spacing: 2px;
-`;
+const StyledToolbar = styled(Toolbar)``;
 
 const useStyles = makeStyles(theme => ({
   appBar: {
     top: 'auto',
     bottom: 0,
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   fabButton: {
     position: 'absolute',
@@ -35,12 +35,15 @@ const Navbar = ({ handleOpen }) => {
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+        <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
+      </Fab>
+
       <Toolbar>
-        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-          <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
-        </Fab>
-        <StyledTypography variant="h2">memorable events</StyledTypography>
+        <Typography variant="h2">memorable events</Typography>
       </Toolbar>
+
+      <Button color="inherit">Login</Button>
     </AppBar>
   );
 };
