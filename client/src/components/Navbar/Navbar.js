@@ -51,7 +51,7 @@ const Navbar = ({ handleOpen }) => {
         </Button>
       ) : (
         <Button to="/auth" component={Link} color="inherit">
-          Login
+          Sign in
         </Button>
       )}
     </AppBar>

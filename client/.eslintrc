@@ -6,6 +6,9 @@
   "globals": {
     "document": true
   },
+  "required": {
+    "some": [ "nesting", "id" ]
+  },
   "rules": {
     "react/jsx-filename-extension": [
       1,
