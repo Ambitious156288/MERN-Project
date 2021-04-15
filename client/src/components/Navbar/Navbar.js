@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const StyledToolbar = styled(Toolbar)``;
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -33,6 +33,8 @@ const useStyles = makeStyles(theme => ({
 const Navbar = ({ handleOpen }) => {
   const classes = useStyles();
 
+  const user = false;
+
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Fab color="secondary" aria-label="add" className={classes.fabButton}>
@@ -43,7 +45,15 @@ const Navbar = ({ handleOpen }) => {
         <Typography variant="h2">memorable events</Typography>
       </Toolbar>
 
-      <Button color="inherit">Login</Button>
+      {user ? (
+        <Button to="/auth" component={Link} color="inherit">
+          Logout
+        </Button>
+      ) : (
+        <Button to="/auth" component={Link} color="inherit">
+          Login
+        </Button>
+      )}
     </AppBar>
   );
 };
