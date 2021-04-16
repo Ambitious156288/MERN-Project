@@ -14,6 +14,10 @@ import Container from '@material-ui/core/Container';
 
 import Owl from './Owl';
 
+import { GoogleLogin } from 'react-google-login';
+
+import GoogleLoginIcon from './GoogleLoginIcon';
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -45,6 +49,12 @@ const LoginForm = ({ SignIn, switchMode }) => {
   };
 
   const inputClass = getClass();
+
+  const googleSuccess = async res => {
+    console.log(res);
+  };
+
+  const googleError = () => alert('Google Sign In was unsuccessful :/');
 
   return (
     <>
@@ -137,6 +147,27 @@ const LoginForm = ({ SignIn, switchMode }) => {
             >
               {SignIn ? 'Sign In' : 'Sign Up'}
             </Button>
+            <GoogleLogin
+              clientId="380805768864-4ljavc4m222jbchr27vs0k7cbrpmr3qs.apps.googleusercontent.com"
+              render={renderProps => (
+                <Button
+                  className={classes.googleButton}
+                  color="primary"
+                  fullWidth
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  startIcon={<GoogleLoginIcon />}
+                  // variant="outline"
+                >
+                  Google Sign In
+                </Button>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleError}
+              cookiePolicy="single_host_origin"
+            />
+
+            <hr />
 
             <Grid container justify="flex-end">
               <Grid item>
