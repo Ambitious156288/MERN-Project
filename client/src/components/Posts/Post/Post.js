@@ -51,16 +51,13 @@ const useStyles = makeStyles({
   },
   details: {
     display: 'flex',
-    justifyContent: 'space-between',
-    margin: '20px',
+    justifyContent: 'center',
+    margin: '15px 0',
   },
-  title: {
-    padding: '0 16px',
-  },
+  title: {},
   cardActions: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0 16px 8px 16px',
   },
 });
 
@@ -82,7 +79,7 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
       <Card className={classes.card}>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div className={classes.overlay}>
-          <Typography variant="h3">{post.creator}</Typography>
+          <Typography variant="h4">{post.creator}</Typography>
           <br />
           <Typography variant="body2">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
@@ -95,12 +92,12 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
               modalOpenFn();
             }}
           >
-            <EditIcon fontSize="large" />
+            <EditIcon fontSize="small" />
           </Button>
         </div>
 
         <div className={classes.details}>
-          <Typography variant="h6" color="primary">
+          <Typography component="p" color="primary">
             <Box display="flex" justifyContent="center">
               {post.tags.map(tag => (
                 <Box borderRadius="borderRadius" {...defaultProps}>{`#${tag} `}</Box>
@@ -109,21 +106,21 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
           </Typography>
         </div>
 
-        <Typography className={classes.title} gutterBottom variant="h4" component="h2">
-          {post.title}
-        </Typography>
-
         <CardContent>
-          <Typography variant="h5">{post.description}</Typography>
+          <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            {post.title}
+          </Typography>
+
+          <Typography variant="h6">{post.description}</Typography>
         </CardContent>
 
         <CardActions className={classes.cardActions}>
-          <Button size="large" color="primary" onClick={() => dispatch(likePost(post._id))}>
-            <FingerprintIcon fontSize="large" /> &nbsp; Like &nbsp; {post.likeCount}
+          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
+            <FingerprintIcon fontSize="small" /> &nbsp; Like &nbsp; {post.likeCount}
           </Button>
 
-          <Button size="large" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-            <DeleteForeverIcon fontSize="large" /> &nbsp; Delete
+          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+            <DeleteForeverIcon fontSize="small" /> &nbsp; Delete
           </Button>
         </CardActions>
       </Card>

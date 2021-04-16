@@ -42,7 +42,7 @@ const Navbar = ({ handleOpen }) => {
       </Fab>
 
       <Toolbar>
-        <Typography variant="h2">memorable events</Typography>
+        <Typography variant="h3">memorable events</Typography>
       </Toolbar>
 
       {user ? (

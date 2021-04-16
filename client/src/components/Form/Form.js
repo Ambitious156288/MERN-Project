@@ -11,8 +11,6 @@ import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from 'actions/posts.action';
 import { useSelector } from 'react-redux';
 
-import { makeStyles } from '@material-ui/core/styles';
-
 const StyledTextField = styled(TextField)`
   margin: 15px 0;
 `;
@@ -25,18 +23,7 @@ const StyledButton = styled(Button)`
   margin: 10px 0;
 `;
 
-const useStyles = makeStyles(() => ({
-  formTextInput: {
-    fontSize: 20,
-  },
-  formTextLabel: {
-    fontSize: 20,
-  },
-}));
-
 const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
-  const classes = useStyles();
-
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
@@ -78,16 +65,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       <br />
       <br />
       <StyledTextField
-        InputProps={{
-          classes: {
-            input: classes.formTextInput,
-          },
-        }}
-        InputLabelProps={{
-          classes: {
-            root: classes.formTextLabel,
-          },
-        }}
         name="creator"
         label="Creator"
         fullWidth
@@ -95,16 +72,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         onChange={e => setPostData({ ...postData, creator: e.target.value })}
       />
       <StyledTextField
-        InputProps={{
-          classes: {
-            input: classes.formTextInput,
-          },
-        }}
-        InputLabelProps={{
-          classes: {
-            root: classes.formTextLabel,
-          },
-        }}
         name="title"
         label="Title"
         fullWidth
@@ -112,16 +79,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         onChange={e => setPostData({ ...postData, title: e.target.value })}
       />
       <StyledTextField
-        InputProps={{
-          classes: {
-            input: classes.formTextInput,
-          },
-        }}
-        InputLabelProps={{
-          classes: {
-            root: classes.formTextLabel,
-          },
-        }}
         name="description"
         label="Description"
         fullWidth
@@ -131,16 +88,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       />
 
       <StyledTextField
-        InputProps={{
-          classes: {
-            input: classes.formTextInput,
-          },
-        }}
-        InputLabelProps={{
-          classes: {
-            root: classes.formTextLabel,
-          },
-        }}
         name="tags"
         label="Tags"
         fullWidth
@@ -158,15 +105,15 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       <StyledButton
         variant="contained"
         color="primary"
-        size="large"
-        fontSize="large"
+        size="medium"
+        fontSize="medium"
         type="submit"
         fullWidth
       >
         Submit
       </StyledButton>
 
-      <Button variant="contained" color="secondary" size="large" fontSize="large" onClick={clear}>
+      <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
         Clear
       </Button>
     </StyledForm>
