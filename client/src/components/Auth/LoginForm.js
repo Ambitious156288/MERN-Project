@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import Owl from './Owl';
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -41,6 +43,7 @@ const LoginForm = ({ SignIn, switchMode }) => {
     if (focus === true) return 'password';
     else return '';
   };
+
   const inputClass = getClass();
 
   return (
@@ -51,10 +54,16 @@ const LoginForm = ({ SignIn, switchMode }) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
+
           <Typography component="h1" variant="h5">
             {SignIn ? 'Sign in' : 'Sign up'}
           </Typography>
+          <br />
+          <br />
+          <br />
+
           <form className={classes.form} noValidate>
+            <Owl inputClass={inputClass} />
             <Grid container spacing={2}>
               {!SignIn && (
                 <>
@@ -106,6 +115,8 @@ const LoginForm = ({ SignIn, switchMode }) => {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onBlur={() => setFocus(false)}
+                  onFocus={() => setFocus(true)}
                 />
               </Grid>
             </Grid>
@@ -137,37 +148,6 @@ const LoginForm = ({ SignIn, switchMode }) => {
           </form>
         </div>
       </Container>
-
-      <hr />
-
-      <div className={`owl ${inputClass}`}>
-        <div className={`hand ${inputClass}`}></div>
-
-        <div className={`hand hand-r ${inputClass}`}></div>
-
-        <div className={`arms ${inputClass}`}>
-          <div className={`arm ${inputClass}`}></div>
-
-          <div className={`arm arm-r ${inputClass}`}></div>
-        </div>
-      </div>
-      <div className={`form password ${inputClass}`}>
-        <div className={`control password ${inputClass}`}>
-          <label for="email" className={`fa fa-envelope ${inputClass}`}></label>
-          <input id="email" className={inputClass} placeholder="Email" type="email"></input>
-        </div>
-        <div className={`control ${inputClass}`}>
-          <label for="password" className={`fa fa-asterisk ${inputClass}`}></label>
-          <input
-            className={inputClass}
-            id="password"
-            placeholder="Password"
-            type="password"
-            onBlur={() => setFocus(false)}
-            onFocus={() => setFocus(true)}
-          ></input>
-        </div>
-      </div>
     </>
   );
 };
