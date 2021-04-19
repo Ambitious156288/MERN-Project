@@ -28,7 +28,7 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
 };
 
 Posts.propTypes = {
-  setCurrentId: PropTypes.number.isRequired,
+  setCurrentId: PropTypes.func.isRequired,
   modalOpenFn: PropTypes.func.isRequired,
 };
 

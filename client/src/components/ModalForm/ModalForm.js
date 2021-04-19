@@ -51,11 +51,11 @@ const ModalForm = ({ open, handleClose, currentId, setCurrentId }) => {
   );
 };
 
-ModalForm.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  currentId: PropTypes.number.isRequired,
-  setCurrentId: PropTypes.func.isRequired,
-};
+// ModalForm.propTypes = {
+//   open: PropTypes.bool.isRequired,
+//   handleClose: PropTypes.func.isRequired,
+//   currentId: PropTypes.number.isRequired,
+//   setCurrentId: PropTypes.func.isRequired,
+// };
 
 export default ModalForm;

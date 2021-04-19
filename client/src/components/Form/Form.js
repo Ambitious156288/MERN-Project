@@ -120,10 +120,10 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   );
 };
 
-Form.propTypes = {
-  currentId: PropTypes.number.isRequired,
-  setCurrentId: PropTypes.number.isRequired,
-  modalCloseFn: PropTypes.func.isRequired,
-};
+// Form.propTypes = {
+//   currentId: PropTypes.number.isRequired,
+//   setCurrentId: PropTypes.func.isRequired,
+//   modalCloseFn: PropTypes.func.isRequired,
+// };
 
 export default Form;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -38,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LoginForm = ({ SignIn, switchMode }) => {
+const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
   const classes = useStyles();
 
   const [focus, setFocus] = useState(false);
@@ -49,12 +50,6 @@ const LoginForm = ({ SignIn, switchMode }) => {
   };
 
   const inputClass = getClass();
-
-  const googleSuccess = async res => {
-    console.log(res);
-  };
-
-  const googleError = () => alert('Google Sign In was unsuccessful :/');
 
   return (
     <>
@@ -181,6 +176,13 @@ const LoginForm = ({ SignIn, switchMode }) => {
       </Container>
     </>
   );
+};
+
+LoginForm.propTypes = {
+  SignIn: PropTypes.bool.isRequired,
+  switchMode: PropTypes.func.isRequired,
+  googleSuccess: PropTypes.func.isRequired,
+  googleError: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

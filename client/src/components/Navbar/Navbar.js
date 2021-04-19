@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,8 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -32,8 +33,23 @@ const useStyles = makeStyles(theme => ({
 
 const Navbar = ({ handleOpen }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
 
-  const user = false;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  console.log(user);
+
+  useEffect(() => {
+    const token = user.token;
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
+
+  const logOut = () => {
+    dispatch({ type: 'LOGOUT' });
+    history.push('/');
+    setUser(null);
+  };
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -46,7 +62,7 @@ const Navbar = ({ handleOpen }) => {
       </Toolbar>
 
       {user ? (
-        <Button to="/auth" component={Link} color="inherit">
+        <Button to="/auth" component={Link} color="inherit" onClick={logOut}>
           Logout
         </Button>
       ) : (
