@@ -40,10 +40,10 @@ const Navbar = ({ handleOpen }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   console.log(user);
 
-  useEffect(() => {
-    const token = user.token;
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
+  // useEffect(() => {
+  //   const token = user.token;
+  //   setUser(JSON.parse(localStorage.getItem('profile')));
+  // }, [location]);
 
   const logOut = () => {
     dispatch({ type: 'LOGOUT' });
