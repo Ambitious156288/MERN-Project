@@ -39,7 +39,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
+const LoginForm = ({
+  SignIn,
+  switchMode,
+  googleSuccess,
+  googleError,
+  handleChange,
+  handleSubmit,
+}) => {
   const classes = useStyles();
 
   const [focus, setFocus] = useState(false);
@@ -67,7 +74,7 @@ const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
           <br />
           <br />
 
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Owl inputClass={inputClass} />
             <Grid container spacing={2}>
               {!SignIn && (
@@ -82,6 +89,7 @@ const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
                       id="firstName"
                       label="First Name"
                       autoFocus
+                      onChange={handleChange}
                     />
                   </Grid>
 
@@ -94,6 +102,7 @@ const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
                       label="Last Name"
                       name="lastName"
                       autoComplete="lname"
+                      onChange={handleChange}
                     />
                   </Grid>
                 </>
@@ -108,6 +117,7 @@ const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -122,6 +132,7 @@ const LoginForm = ({ SignIn, switchMode, googleSuccess, googleError }) => {
                   autoComplete="current-password"
                   onBlur={() => setFocus(false)}
                   onFocus={() => setFocus(true)}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -183,6 +194,8 @@ LoginForm.propTypes = {
   switchMode: PropTypes.func.isRequired,
   googleSuccess: PropTypes.func.isRequired,
   googleError: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

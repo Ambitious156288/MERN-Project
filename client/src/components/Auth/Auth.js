@@ -6,8 +6,14 @@ import './OwlStyles.css';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { singin, singup } from 'actions/auth.action';
+
+const initialState = { firstName: '', lastName: '', email: '', password: '' };
+
 const Auth = () => {
   const [isSignIn, setSignIn] = useState(true);
+  const [formData, setFormData] = useState(initialState);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,6 +33,20 @@ const Auth = () => {
 
   const googleError = () => alert('Google Sign In was unsuccessful :/');
 
+  const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (isSignIn) {
+      dispatch(signin(formData, history));
+    } else {
+      dispatch(signup(formData, history));
+    }
+
+    console.log(formData);
+  };
+
   return (
     <>
       <LoginForm
@@ -34,6 +54,8 @@ const Auth = () => {
         switchMode={switchMode}
         googleSuccess={googleSuccess}
         googleError={googleError}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
     </>
   );
