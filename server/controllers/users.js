@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import jwt from "jwt";
+import jwt from "jsonwebtoken";
 
 import User from "../models/user.js";
 
-export const sigin = async (req, res) => {
+export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -34,7 +34,7 @@ export const sigin = async (req, res) => {
   }
 };
 
-export const singup = async (req, res) => {
+export const signup = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
   try {
@@ -56,6 +56,6 @@ export const singup = async (req, res) => {
 
     res.status(200).json({ result: user, token });
   } catch {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: "singup failed" });
   }
 };

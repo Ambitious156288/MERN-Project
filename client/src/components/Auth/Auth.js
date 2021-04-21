@@ -6,7 +6,7 @@ import './OwlStyles.css';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { singin, singup } from 'actions/auth.action';
+import { signin, signup } from 'actions/auth.action';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '' };
 
