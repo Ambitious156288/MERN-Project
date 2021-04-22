@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import EditIcon from '@material-ui/icons/Edit';
-import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from 'actions/posts.action';
 
 import Box from '@material-ui/core/Box';
+
+import Like from 'components/Like/Like';
 
 const useStyles = makeStyles({
   root: {
@@ -84,17 +85,19 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
           <Typography variant="body2">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
 
-        <div className={classes.overlay2}>
-          <Button
-            style={{ color: 'white' }}
-            onClick={() => {
-              setCurrentId(post._id);
-              modalOpenFn();
-            }}
-          >
-            <EditIcon fontSize="small" />
-          </Button>
-        </div>
+        {user && (
+          <div className={classes.overlay2}>
+            <Button
+              style={{ color: 'white' }}
+              onClick={() => {
+                setCurrentId(post._id);
+                modalOpenFn();
+              }}
+            >
+              <EditIcon fontSize="small" />
+            </Button>
+          </div>
+        )}
 
         <div className={classes.details}>
           <Typography component="p" color="primary">
@@ -118,15 +121,17 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
           <Button
             size="small"
             color="primary"
-            disabled={!user?.result}
+            disabled={!user}
             onClick={() => dispatch(likePost(post._id))}
           >
-            <FingerprintIcon fontSize="small" /> &nbsp; Like &nbsp; {post.likeCount}
+            <Like post={post} />
           </Button>
 
-          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-            <DeleteForeverIcon fontSize="small" /> &nbsp; Delete
-          </Button>
+          {user && (
+            <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+              <DeleteForeverIcon fontSize="small" /> Delete
+            </Button>
+          )}
         </CardActions>
       </Card>
     </>

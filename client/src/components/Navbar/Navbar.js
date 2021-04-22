@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
+import decode from 'jwt-decode';
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     top: 'auto',
@@ -38,12 +40,6 @@ const Navbar = ({ handleOpen }) => {
   const location = useLocation();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  console.log(user);
-
-  // useEffect(() => {
-  //   const token = user.token;
-  //   setUser(JSON.parse(localStorage.getItem('profile')));
-  // }, [location]);
 
   const logOut = () => {
     dispatch({ type: 'LOGOUT' });
@@ -51,9 +47,19 @@ const Navbar = ({ handleOpen }) => {
     setUser(null);
   };
 
+  useEffect(() => {
+    if (user) {
+      const decodedToken = decode(user.token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logOut();
+    }
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
+
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
-      <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+      <Fab color="secondary" aria-label="add" className={classes.fabButton} disabled={!user}>
         <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
       </Fab>
 
