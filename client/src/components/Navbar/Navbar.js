@@ -62,9 +62,12 @@ const Navbar = ({ handleOpen }) => {
       </Toolbar>
 
       {user ? (
-        <Button to="/auth" component={Link} color="inherit" onClick={logOut}>
-          Logout
-        </Button>
+        <Toolbar>
+          <p>{user.result.name} | </p>
+          <Button to="/auth" component={Link} color="inherit" onClick={logOut}>
+            Logout
+          </Button>
+        </Toolbar>
       ) : (
         <Button to="/auth" component={Link} color="inherit">
           Sign in

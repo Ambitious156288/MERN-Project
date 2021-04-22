@@ -71,15 +71,15 @@ const defaultProps = {
 
 const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <>
       <Card className={classes.card}>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div className={classes.overlay}>
-          <Typography variant="h4">{post.creator}</Typography>
+          <Typography variant="h4">{post.name}</Typography>
           <br />
           <Typography variant="body2">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
@@ -115,7 +115,12 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
         </CardContent>
 
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
+          <Button
+            size="small"
+            color="primary"
+            disabled={!user?.result}
+            onClick={() => dispatch(likePost(post._id))}
+          >
             <FingerprintIcon fontSize="small" /> &nbsp; Like &nbsp; {post.likeCount}
           </Button>
 

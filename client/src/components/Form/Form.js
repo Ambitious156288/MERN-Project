@@ -25,18 +25,18 @@ const StyledButton = styled(Button)`
 
 const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   const [postData, setPostData] = useState({
-    creator: '',
     title: '',
     description: '',
     tags: '',
     selectedFile: '',
   });
 
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+
   const post = useSelector(state =>
     currentId ? state.posts.find(p => p._id === currentId) : null,
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -44,33 +44,35 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
 
   const clear = () => {
     setCurrentId(null);
-    setPostData({ creator: '', title: '', description: '', tags: '', selectedFile: '' });
+    setPostData({ title: '', description: '', tags: '', selectedFile: '' });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else dispatch(createPost(postData));
+      dispatch(updatePost(currentId, { ...postData, name: user.result.name }));
+    } else dispatch(createPost({ ...postData, name: user.result.name }));
 
     clear();
 
     modalCloseFn();
   };
 
+  // if (!user.result.name) {
+  //   return (
+  //     <>
+  //       {console.log('Please Sign in to start')}
+  //       <p>Please Sign in to start</p>
+  //     </>
+  //   );
+  // }
+
   return (
     <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}>
       <Typography variant="h3">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
       <br />
       <br />
-      <StyledTextField
-        name="creator"
-        label="Creator"
-        fullWidth
-        value={postData.creator}
-        onChange={e => setPostData({ ...postData, creator: e.target.value })}
-      />
       <StyledTextField
         name="title"
         label="Title"
