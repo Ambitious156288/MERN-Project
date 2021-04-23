@@ -5,7 +5,7 @@ import GlobalStyle from 'theme/GlobalStyle';
 import Container from '@material-ui/core/Container';
 
 import Home from 'components/Home/Home';
-import Auth from 'components/Auth/Auth';
+import LoginPage from 'views/LoginPage';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const Root = () => {
         <StyledContainer maxWidth="lg">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/auth" component={Auth} />
+            <Route path="/auth" component={LoginPage} />
           </Switch>
         </StyledContainer>
       </BrowserRouter>

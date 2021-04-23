@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +11,8 @@ import Button from '@material-ui/core/Button';
 
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+
+import routes from 'constants/routes';
 
 import decode from 'jwt-decode';
 
@@ -43,7 +44,7 @@ const Navbar = ({ handleOpen }) => {
 
   const logOut = () => {
     dispatch({ type: 'LOGOUT' });
-    history.push('/');
+    history.push(routes.home);
     setUser(null);
   };
 
@@ -70,12 +71,12 @@ const Navbar = ({ handleOpen }) => {
       {user ? (
         <Toolbar>
           <p>{user.result.name} | </p>
-          <Button to="/auth" component={Link} color="inherit" onClick={logOut}>
+          <Button to={routes.auth} component={Link} color="inherit" onClick={logOut}>
             Logout
           </Button>
         </Toolbar>
       ) : (
-        <Button to="/auth" component={Link} color="inherit">
+        <Button to={routes.auth} component={Link} color="inherit">
           Sign in
         </Button>
       )}

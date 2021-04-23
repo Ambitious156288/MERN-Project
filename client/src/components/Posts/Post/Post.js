@@ -17,8 +17,9 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from 'actions/posts.action';
 
 import Box from '@material-ui/core/Box';
-
 import Like from 'components/Like/Like';
+
+import { user } from 'constants/userConstant';
 
 const useStyles = makeStyles({
   root: {
@@ -73,7 +74,6 @@ const defaultProps = {
 const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <>

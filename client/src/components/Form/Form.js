@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import FileBase from 'react-file-base64';
 
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from 'actions/posts.action';
 import { useSelector } from 'react-redux';
+
+import { user } from 'constants/userConstant';
 
 const StyledTextField = styled(TextField)`
   margin: 15px 0;
@@ -32,7 +33,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   });
 
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('profile'));
 
   const post = useSelector(state =>
     currentId ? state.posts.find(p => p._id === currentId) : null,
@@ -58,15 +58,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
 
     modalCloseFn();
   };
-
-  // if (!user.result.name) {
-  //   return (
-  //     <>
-  //       {console.log('Please Sign in to start')}
-  //       <p>Please Sign in to start</p>
-  //     </>
-  //   );
-  // }
 
   return (
     <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -121,11 +112,5 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
     </StyledForm>
   );
 };
-
-// Form.propTypes = {
-//   currentId: PropTypes.number.isRequired,
-//   setCurrentId: PropTypes.func.isRequired,
-//   modalCloseFn: PropTypes.func.isRequired,
-// };
 
 export default Form;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
-import LoginForm from './LoginForm';
-import './OwlStyles.css';
+import LoginForm from '../components/Auth/LoginForm';
+import 'components/Auth/OwlAnimation/OwlStyles.css';
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { signin, signup } from 'actions/auth.action';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '' };
 
-const Auth = () => {
+const LoginPage = () => {
   const [isSignIn, setSignIn] = useState(true);
   const [formData, setFormData] = useState(initialState);
 
@@ -61,4 +60,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default LoginPage;

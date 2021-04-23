@@ -1,9 +1,9 @@
 import React from 'react';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
-const Like = ({ post }) => {
-  const user = JSON.parse(localStorage.getItem('profile'));
+import { user } from 'constants/userConstant';
 
+const Like = ({ post }) => {
   if (post.likes.length > 0) {
     return post.likes.find(like => like === user) ? (
       <>

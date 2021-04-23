@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
@@ -50,12 +49,5 @@ const ModalForm = ({ open, handleClose, currentId, setCurrentId }) => {
     </Modal>
   );
 };
-
-// ModalForm.propTypes = {
-//   open: PropTypes.bool.isRequired,
-//   handleClose: PropTypes.func.isRequired,
-//   currentId: PropTypes.number.isRequired,
-//   setCurrentId: PropTypes.func.isRequired,
-// };
 
 export default ModalForm;

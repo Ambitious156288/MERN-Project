@@ -6,6 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import Post from 'components/Posts/Post/Post';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
+import { user } from 'constants/userConstant';
 
 const Posts = ({ setCurrentId, modalOpenFn }) => {
   const posts = useSelector(state => state.posts);
@@ -22,6 +25,20 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
             </Grid>
           ))}
         </Grid>
+      )}
+
+      {!user && (
+        <>
+          <br />
+          <br />
+
+          <Alert severity="info">
+            <AlertTitle>
+              <strong>Tip</strong>
+            </AlertTitle>
+            Please Sign in to start!
+          </Alert>
+        </>
       )}
     </>
   );

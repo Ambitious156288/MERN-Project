@@ -13,11 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import Owl from './Owl';
+import Owl from './OwlAnimation/Owl';
 
 import { GoogleLogin } from 'react-google-login';
 
-import GoogleLoginIcon from './GoogleLoginIcon';
+import GoogleLoginIcon from '../../utils/svg/GoogleLoginIcon';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -163,7 +163,6 @@ const LoginForm = ({
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                   startIcon={<GoogleLoginIcon />}
-                  // variant="outline"
                 >
                   Google Sign In
                 </Button>

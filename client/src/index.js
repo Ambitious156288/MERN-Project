@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
 
-import Root from 'views/Root/Root';
+import Root from 'views/Root';
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
