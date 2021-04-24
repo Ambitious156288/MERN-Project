@@ -8,6 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import SnackbarHello from 'components/SnackbarHello/SnackbarHello';
 
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
@@ -65,16 +66,18 @@ const Navbar = ({ handleOpen }) => {
       </Fab>
 
       <Toolbar>
-        <Typography variant="h3">memorable events</Typography>
+        <Typography variant="h5">memorable events</Typography>
       </Toolbar>
 
       {user ? (
-        <Toolbar>
-          <p>{user.result.name} | </p>
-          <Button to={routes.auth} component={Link} color="inherit" onClick={logOut}>
-            Logout
-          </Button>
-        </Toolbar>
+        <>
+          <SnackbarHello loginMessage={`Hello ${user.result.name} !!!`} />
+          <Toolbar>
+            <Button to={routes.auth} component={Link} color="inherit" onClick={logOut}>
+              Logout
+            </Button>
+          </Toolbar>
+        </>
       ) : (
         <Button to={routes.auth} component={Link} color="inherit">
           Sign in

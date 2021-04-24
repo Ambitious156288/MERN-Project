@@ -12,16 +12,26 @@ import { useSelector } from 'react-redux';
 
 import { user } from 'constants/userConstant';
 
+import QuitIcon from 'utils/svg/QuitIcon';
+
 const StyledTextField = styled(TextField)`
   margin: 15px 0;
 `;
 
 const StyledForm = styled.form`
+  position: relative;
   text-align: center;
 `;
 
 const StyledButton = styled(Button)`
   margin: 10px 0;
+`;
+
+const StyledDiv = styled.div`
+  position: absolute;
+  right: -44px;
+  top: -47px;
+  text-align: right;
 `;
 
 const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
@@ -61,7 +71,14 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
 
   return (
     <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}>
-      <Typography variant="h3">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
+      <StyledDiv>
+        <Button onClick={modalCloseFn}>
+          <QuitIcon />
+        </Button>
+      </StyledDiv>
+
+      <br />
+      <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
       <br />
       <br />
       <StyledTextField
@@ -79,7 +96,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         value={postData.description}
         onChange={e => setPostData({ ...postData, description: e.target.value })}
       />
-
       <StyledTextField
         name="tags"
         label="Tags"
@@ -88,13 +104,15 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         value={postData.tags}
         onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
       />
-
+      <br />
+      <br />
       <FileBase
         type="file"
         multiple={false}
         onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
       />
-
+      <br />
+      <br />
       <StyledButton
         variant="contained"
         color="primary"
@@ -105,7 +123,8 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       >
         Submit
       </StyledButton>
-
+      <br />
+      <br />
       <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
         Clear
       </Button>
