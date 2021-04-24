@@ -28,4 +28,8 @@ const SnackbarAlert = ({ loginMessage }) => {
   );
 };
 
+SnackbarAlert.propTypes = {
+  loginMessage: PropTypes.string.isRequired,
+};
+
 export default SnackbarAlert;
