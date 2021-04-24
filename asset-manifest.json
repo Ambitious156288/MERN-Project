@@ -1,13 +1,13 @@
 {
-  "main.css": "/MERN-Project/static/css/main.d2425c80.chunk.css",
-  "main.js": "/MERN-Project/static/js/main.10c5cd68.chunk.js",
-  "main.js.map": "/MERN-Project/static/js/main.10c5cd68.chunk.js.map",
+  "main.css": "/MERN-Project/static/css/main.10e8fd62.chunk.css",
+  "main.js": "/MERN-Project/static/js/main.2b42bdd5.chunk.js",
+  "main.js.map": "/MERN-Project/static/js/main.2b42bdd5.chunk.js.map",
   "runtime~main.js": "/MERN-Project/static/js/runtime~main.4e358127.js",
   "runtime~main.js.map": "/MERN-Project/static/js/runtime~main.4e358127.js.map",
-  "static/js/2.2883715b.chunk.js": "/MERN-Project/static/js/2.2883715b.chunk.js",
-  "static/js/2.2883715b.chunk.js.map": "/MERN-Project/static/js/2.2883715b.chunk.js.map",
+  "static/js/2.a0659755.chunk.js": "/MERN-Project/static/js/2.a0659755.chunk.js",
+  "static/js/2.a0659755.chunk.js.map": "/MERN-Project/static/js/2.a0659755.chunk.js.map",
   "index.html": "/MERN-Project/index.html",
-  "precache-manifest.d124b258449f42303aaac5b81bf9e794.js": "/MERN-Project/precache-manifest.d124b258449f42303aaac5b81bf9e794.js",
+  "precache-manifest.66c08ae6e3052ba9b2ffd1094b16bdb8.js": "/MERN-Project/precache-manifest.66c08ae6e3052ba9b2ffd1094b16bdb8.js",
   "service-worker.js": "/MERN-Project/service-worker.js",
-  "static/css/main.d2425c80.chunk.css.map": "/MERN-Project/static/css/main.d2425c80.chunk.css.map"
+  "static/css/main.10e8fd62.chunk.css.map": "/MERN-Project/static/css/main.10e8fd62.chunk.css.map"
 }
