@@ -27,7 +27,7 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
         </Grid>
       )}
 
-      {!user && (
+      {!user?.result?.name && (
         <>
           <br />
           <br />

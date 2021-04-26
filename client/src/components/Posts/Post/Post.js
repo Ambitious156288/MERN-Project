@@ -84,13 +84,14 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
           image={post.selectedFile || defaultPostImage}
           title={post.title}
         />
+
         <div className={classes.overlay}>
           <Typography variant="h4">{post.name}</Typography>
           <br />
           <Typography variant="body2">{`created ${moment(post.createdAt).fromNow()}`}</Typography>
         </div>
 
-        {user && (
+        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
             <Button
               style={{ color: 'white' }}
@@ -126,13 +127,13 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
           <Button
             size="small"
             color="primary"
-            disabled={!user}
+            disabled={!user?.result}
             onClick={() => dispatch(likePost(post._id))}
           >
             <Like post={post} />
           </Button>
 
-          {user && (
+          {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
             <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
               <DeleteForeverIcon fontSize="small" /> Delete
             </Button>

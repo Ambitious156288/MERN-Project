@@ -69,7 +69,7 @@ const Navbar = ({ handleOpen }) => {
         <Typography variant="h5">memorable events</Typography>
       </Toolbar>
 
-      {user ? (
+      {user?.result ? (
         <>
           <SnackbarHello loginMessage={`Hello ${user?.result?.name} !!!`} />
           <Toolbar>

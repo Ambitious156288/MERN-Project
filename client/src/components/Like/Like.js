@@ -5,7 +5,7 @@ import { user } from 'constants/userConstant';
 
 const Like = ({ post }) => {
   if (post.likes.length > 0) {
-    return post.likes.find(like => like === user) ? (
+    return post.likes.find(like => like === (user?.result?.googleId || user?.result?._id)) ? (
       <>
         <FingerprintIcon fontSize="small" />
         &nbsp;

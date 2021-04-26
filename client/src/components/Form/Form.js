@@ -60,9 +60,8 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (currentId) {
-      dispatch(updatePost(currentId, { ...postData, name: user.result.name }));
-    } else dispatch(createPost({ ...postData, name: user.result.name }));
+    if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
+    else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
 
     clear();
 
