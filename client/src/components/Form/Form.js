@@ -133,7 +133,7 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
 };
 
 Form.propTypes = {
-  currentId: PropTypes.number.isRequired,
+  currentId: PropTypes.any.isRequired,
   setCurrentId: PropTypes.func.isRequired,
   modalCloseFn: PropTypes.func.isRequired,
 };
