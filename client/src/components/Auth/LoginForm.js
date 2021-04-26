@@ -66,7 +66,7 @@ const LoginForm = ({
           </Avatar>
 
           <Typography component="h1" variant="h5">
-            {SignIn ? 'Sign in' : 'Sign up'}
+            {SignIn ? 'Sign up' : 'Sign in'}
           </Typography>
           <br />
           <br />
@@ -75,7 +75,7 @@ const LoginForm = ({
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Owl inputClass={inputClass} />
             <Grid container spacing={2}>
-              {!SignIn && (
+              {SignIn && (
                 <>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -142,7 +142,7 @@ const LoginForm = ({
               color="primary"
               className={classes.submit}
             >
-              {SignIn ? 'Sign In' : 'Sign Up'}
+              {SignIn ? 'Sign Up' : 'Sign In'}
             </Button>
             <GoogleLogin
               clientId="380805768864-4ljavc4m222jbchr27vs0k7cbrpmr3qs.apps.googleusercontent.com"
@@ -168,7 +168,7 @@ const LoginForm = ({
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="#" variant="body2" onClick={switchMode}>
-                  {SignIn ? `Don't have an account? Sign Up` : `Already have an account? Sign in`}
+                  {SignIn ? `Already have an account? Sign in` : `Don't have an account? Sign Up`}
                 </Link>
               </Grid>
             </Grid>
