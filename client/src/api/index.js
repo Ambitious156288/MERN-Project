@@ -1,11 +1,12 @@
 import axios from 'axios';
 import routes from 'constants/routes';
+import { user } from 'constants/userConstant';
 
-const API = axios.create({ baseURL: 'https://memorable-events.herokuapp.com/' });
+const API = axios.create({ baseURL: 'http://localhost:5000' });
 
 API.interceptors.request.use(req => {
   if (localStorage.getItem('profile')) {
-    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+    req.headers.Authorization = `Bearer ${user.token}`;
   }
 
   return req;

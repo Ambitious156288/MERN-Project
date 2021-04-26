@@ -42,8 +42,6 @@ const LoginPage = () => {
     } else {
       dispatch(signup(formData, history));
     }
-
-    console.log(formData);
   };
 
   return (

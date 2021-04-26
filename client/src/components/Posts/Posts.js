@@ -19,8 +19,8 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
         <LinearProgress />
       ) : (
         <Grid container spacing={2}>
-          {posts.map(post => (
-            <Grid key={post._id} item sm={6} xs={12}>
+          {posts.map((post, index) => (
+            <Grid key={index} item sm={6} xs={12}>
               <Post post={post} setCurrentId={setCurrentId} modalOpenFn={modalOpenFn} />
             </Grid>
           ))}

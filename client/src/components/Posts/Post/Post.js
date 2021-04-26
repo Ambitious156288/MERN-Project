@@ -20,6 +20,7 @@ import Box from '@material-ui/core/Box';
 import Like from 'components/Like/Like';
 
 import { user } from 'constants/userConstant';
+import defaultPostImage from 'utils/images/defaultPostImage.jpg';
 
 const useStyles = makeStyles({
   root: {
@@ -78,7 +79,11 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
   return (
     <>
       <Card className={classes.card}>
-        <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+        <CardMedia
+          className={classes.media}
+          image={post.selectedFile || defaultPostImage}
+          title={post.title}
+        />
         <div className={classes.overlay}>
           <Typography variant="h4">{post.name}</Typography>
           <br />
@@ -100,10 +105,10 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
         )}
 
         <div className={classes.details}>
-          <Typography component="p" color="primary">
+          <Typography component="span" color="primary">
             <Box display="flex" justifyContent="center">
-              {post.tags.map(tag => (
-                <Box borderRadius="borderRadius" {...defaultProps}>{`#${tag} `}</Box>
+              {post.tags.map((tag, index) => (
+                <Box key={index} borderRadius="borderRadius" {...defaultProps}>{`#${tag} `}</Box>
               ))}
             </Box>
           </Typography>
@@ -140,7 +145,7 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  setCurrentId: PropTypes.number.isRequired,
+  setCurrentId: PropTypes.func.isRequired,
   modalOpenFn: PropTypes.func.isRequired,
 };
 

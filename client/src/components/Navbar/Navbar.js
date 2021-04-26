@@ -71,7 +71,7 @@ const Navbar = ({ handleOpen }) => {
 
       {user ? (
         <>
-          <SnackbarHello loginMessage={`Hello ${user.result.name} !!!`} />
+          <SnackbarHello loginMessage={`Hello ${user?.result?.name} !!!`} />
           <Toolbar>
             <Button to={routes.auth} component={Link} color="inherit" onClick={logOut}>
               Logout
