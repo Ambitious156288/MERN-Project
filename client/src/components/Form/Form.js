@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FileBase from 'react-file-base64';
 
@@ -53,7 +54,7 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   }, [post]);
 
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({ title: '', description: '', tags: '', selectedFile: '' });
   };
 
@@ -129,6 +130,12 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       </Button>
     </StyledForm>
   );
+};
+
+Form.propTypes = {
+  currentId: PropTypes.number.isRequired,
+  setCurrentId: PropTypes.func.isRequired,
+  modalCloseFn: PropTypes.func.isRequired,
 };
 
 export default Form;

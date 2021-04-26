@@ -9,7 +9,7 @@ import ModalFrom from 'components/ModalForm/ModalForm';
 import Navbar from 'components/Navbar/Navbar';
 
 const Home = () => {
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Home = () => {
         setCurrentId={setCurrentId}
       />
 
-      <Navbar handleOpen={() => handleOpen()} />
+      <Navbar handleOpen={handleOpen} />
     </>
   );
 };

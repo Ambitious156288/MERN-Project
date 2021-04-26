@@ -16,6 +16,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import routes from 'constants/routes';
 
 import decode from 'jwt-decode';
+import { LOGOUT } from 'constants/actionTypes';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -36,22 +37,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Navbar = ({ handleOpen }) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
   const logOut = () => {
-    dispatch({ type: 'LOGOUT' });
-    history.push(routes.home);
+    dispatch({ type: LOGOUT });
+    history.push(routes.auth);
     setUser(null);
   };
 
   useEffect(() => {
-    if (user) {
-      const decodedToken = decode(user.token);
+    const token = user?.token;
+
+    if (token) {
+      const decodedToken = decode(token);
 
       if (decodedToken.exp * 1000 < new Date().getTime()) logOut();
     }
@@ -61,7 +64,12 @@ const Navbar = ({ handleOpen }) => {
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
-      <Fab color="secondary" aria-label="add" className={classes.fabButton} disabled={!user}>
+      <Fab
+        color="secondary"
+        aria-label="add"
+        className={classes.fabButton}
+        disabled={!user?.result}
+      >
         <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
       </Fab>
 
