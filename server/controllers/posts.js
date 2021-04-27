@@ -46,7 +46,7 @@ export const updatePost = async (req, res) => {
     }
   );
 
-  res.json(updatedPost);
+  res.status(200).json(updatedPost);
 };
 
 export const deletePost = async (req, res) => {
@@ -82,5 +82,5 @@ export const likePost = async (req, res) => {
     new: true,
   });
 
-  res.json(updatedPost);
+  res.status(200).json(updatedPost);
 };

@@ -24,7 +24,7 @@ export const signin = async (req, res) => {
       { email: existingUser.email, id: existingUser._id },
       "test",
       {
-        expiresIn: "2h",
+        expiresIn: "1h",
       }
     );
 
@@ -51,10 +51,10 @@ export const signup = async (req, res) => {
     });
 
     const token = jwt.sign({ email: user.email, id: user._id }, "test", {
-      expiresIn: "2h",
+      expiresIn: "1h",
     });
 
-    res.status(200).json({ result: user, token });
+    res.status(201).json({ user, token });
   } catch {
     res.status(500).json({ message: "singup failed" });
   }
