@@ -1,13 +1,23 @@
 {
-  "main.css": "/static/css/main.10e8fd62.chunk.css",
-  "main.js": "/static/js/main.77f3a82d.chunk.js",
-  "main.js.map": "/static/js/main.77f3a82d.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-  "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-  "static/js/2.46740753.chunk.js": "/static/js/2.46740753.chunk.js",
-  "static/js/2.46740753.chunk.js.map": "/static/js/2.46740753.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.016053994b1ef4882eb97a746cff4f00.js": "/precache-manifest.016053994b1ef4882eb97a746cff4f00.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/main.10e8fd62.chunk.css.map": "/static/css/main.10e8fd62.chunk.css.map"
+  "files": {
+    "main.css": "/MERN-Project/static/css/main.fed748a9.chunk.css",
+    "main.js": "/MERN-Project/static/js/main.8a90430d.chunk.js",
+    "main.js.map": "/MERN-Project/static/js/main.8a90430d.chunk.js.map",
+    "runtime-main.js": "/MERN-Project/static/js/runtime-main.07e5b636.js",
+    "runtime-main.js.map": "/MERN-Project/static/js/runtime-main.07e5b636.js.map",
+    "static/js/2.6056c457.chunk.js": "/MERN-Project/static/js/2.6056c457.chunk.js",
+    "static/js/2.6056c457.chunk.js.map": "/MERN-Project/static/js/2.6056c457.chunk.js.map",
+    "index.html": "/MERN-Project/index.html",
+    "precache-manifest.95835f87e49c03e444d804ee66f90227.js": "/MERN-Project/precache-manifest.95835f87e49c03e444d804ee66f90227.js",
+    "service-worker.js": "/MERN-Project/service-worker.js",
+    "static/css/main.fed748a9.chunk.css.map": "/MERN-Project/static/css/main.fed748a9.chunk.css.map",
+    "static/js/2.6056c457.chunk.js.LICENSE.txt": "/MERN-Project/static/js/2.6056c457.chunk.js.LICENSE.txt",
+    "static/media/defaultPostImage.jpg": "/MERN-Project/static/media/defaultPostImage.c183954d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07e5b636.js",
+    "static/js/2.6056c457.chunk.js",
+    "static/css/main.fed748a9.chunk.css",
+    "static/js/main.8a90430d.chunk.js"
+  ]
 }
