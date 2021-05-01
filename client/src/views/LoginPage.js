@@ -35,6 +35,7 @@ const LoginPage = () => {
   const googleSuccess = async res => {
     const result = res?.profileObj;
     const token = res?.tokenId;
+    console.log(res);
 
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
