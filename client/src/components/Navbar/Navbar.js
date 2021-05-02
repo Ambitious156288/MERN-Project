@@ -68,7 +68,7 @@ const Navbar = ({ handleOpen }) => {
         color="secondary"
         aria-label="add"
         className={classes.fabButton}
-        disabled={!user?.result}
+        // disabled={!user?.result}
       >
         <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
       </Fab>

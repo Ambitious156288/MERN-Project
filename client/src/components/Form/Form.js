@@ -15,6 +15,8 @@ import { user } from 'constants/userConstant';
 
 import QuitIcon from 'utils/svg/QuitIcon';
 
+import { useForm } from 'react-hook-form';
+
 const StyledTextField = styled(TextField)`
   margin: 15px 0;
 `;
@@ -36,6 +38,17 @@ const StyledDiv = styled.div`
 `;
 
 const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    mode: 'onChange',
+  });
+  const onSubmit = data => {
+    console.log(data);
+  };
+
   const [postData, setPostData] = useState({
     title: '',
     description: '',
@@ -58,19 +71,20 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
     setPostData({ title: '', description: '', tags: '', selectedFile: '' });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  // const handleSubmit = e => {
+  // e.preventDefault();
 
-    if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
-    else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+  // if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
+  // else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
 
-    clear();
+  // clear();
 
-    modalCloseFn();
-  };
+  // modalCloseFn();
+  // };
 
   return (
-    <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}>
+    <StyledForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      {/* <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}> */}
       <StyledDiv>
         <Button onClick={modalCloseFn}>
           <QuitIcon />
@@ -81,14 +95,29 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
       <br />
       <br />
-      <StyledTextField
+
+      {/* <StyledTextField
         name="title"
         label="Title"
         fullWidth
         value={postData.title}
         onChange={e => setPostData({ ...postData, title: e.target.value })}
+        inputRef={register()}
       />
-      <StyledTextField
+      {errors.firstName && <p>{errors.firstName.message}</p>} */}
+
+      <input
+        {...register('firstName', {
+          required: 'this is a required',
+          maxLength: {
+            value: 2,
+            message: 'Max length is 2',
+          },
+        })}
+      />
+      {errors.firstName && <p>{errors.firstName.message}</p>}
+
+      {/* <StyledTextField
         name="description"
         label="Description"
         fullWidth
@@ -110,7 +139,7 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         type="file"
         multiple={false}
         onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
-      />
+      /> */}
       <br />
       <br />
       <StyledButton

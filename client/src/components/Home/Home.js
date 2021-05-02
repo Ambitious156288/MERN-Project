@@ -17,6 +17,7 @@ const Home = () => {
   }, [currentId, dispatch]);
 
   const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
