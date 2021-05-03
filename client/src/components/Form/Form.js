@@ -16,6 +16,7 @@ import { user } from 'constants/userConstant';
 import QuitIcon from 'utils/svg/QuitIcon';
 
 import { useForm } from 'react-hook-form';
+import ErrorMessage from './errorMessage';
 
 const StyledTextField = styled(TextField)`
   margin: 15px 0;
@@ -40,13 +41,14 @@ const StyledDiv = styled.div`
 const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   const {
     register,
-    formState: { errors },
     handleSubmit,
+    errors,
+    formState: { isSubmitting },
   } = useForm({
     mode: 'onChange',
   });
   const onSubmit = data => {
-    console.log(data);
+    alert(JSON.stringify(data));
   };
 
   const [postData, setPostData] = useState({
@@ -84,7 +86,6 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
 
   return (
     <StyledForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      {/* <StyledForm autoComplete="off" noValidate onSubmit={handleSubmit}> */}
       <StyledDiv>
         <Button onClick={modalCloseFn}>
           <QuitIcon />
@@ -96,35 +97,27 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
       <br />
       <br />
 
-      {/* <StyledTextField
+      <StyledTextField
         name="title"
         label="Title"
         fullWidth
         value={postData.title}
         onChange={e => setPostData({ ...postData, title: e.target.value })}
-        inputRef={register()}
+        inputRef={register({ required: true, minLength: 3 })}
       />
-      {errors.firstName && <p>{errors.firstName.message}</p>} */}
+      <ErrorMessage error={errors.title} />
 
-      <input
-        {...register('firstName', {
-          required: 'this is a required',
-          maxLength: {
-            value: 2,
-            message: 'Max length is 2',
-          },
-        })}
-      />
-      {errors.firstName && <p>{errors.firstName.message}</p>}
-
-      {/* <StyledTextField
+      <StyledTextField
         name="description"
         label="Description"
         fullWidth
         multiline
         value={postData.description}
         onChange={e => setPostData({ ...postData, description: e.target.value })}
+        inputRef={register({ required: true, minLength: 7 })}
       />
+      <ErrorMessage error={errors.description} />
+
       <StyledTextField
         name="tags"
         label="Tags"
@@ -132,16 +125,22 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
         multiline
         value={postData.tags}
         onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
+        inputRef={register({ required: true, minLength: 3 })}
       />
+      <ErrorMessage error={errors.tags} />
+
       <br />
       <br />
+
       <FileBase
         type="file"
         multiple={false}
         onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
-      /> */}
+      />
+
       <br />
       <br />
+
       <StyledButton
         variant="contained"
         color="primary"
