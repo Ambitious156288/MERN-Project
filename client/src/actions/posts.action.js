@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from 'constants/actionTypes';
+import { GET_ALL, CREATE, UPDATE, REMOVE, LIKEONE } from 'constants/actionTypes';
 import * as api from 'api';
 
 export const getPosts = () => async dispatch => {
@@ -6,11 +6,11 @@ export const getPosts = () => async dispatch => {
     const { data } = await api.fetchPosts();
 
     dispatch({
-      type: FETCH_ALL,
+      type: GET_ALL,
       payload: data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err); // błedy nie logujemy w konsoli
   }
 };
 
@@ -45,7 +45,7 @@ export const deletePost = id => async dispatch => {
     await api.deletePost(id);
 
     dispatch({
-      type: DELETE,
+      type: REMOVE,
       payload: id,
     });
   } catch (err) {
@@ -60,7 +60,7 @@ export const likePost = id => async dispatch => {
     const { data } = await api.likePost(id, user?.token);
 
     dispatch({
-      type: LIKE,
+      type: LIKEONE,
       payload: data,
     });
   } catch (err) {

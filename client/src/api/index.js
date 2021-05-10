@@ -1,22 +1,28 @@
 import axios from 'axios';
 import routes from 'constants/routes';
-import { user } from 'constants/userConstant';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+// const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'https://memorable-events.herokuapp.com/' });
 
 API.interceptors.request.use(req => {
   if (localStorage.getItem('profile')) {
-    req.headers.Authorization = `Bearer ${user.token}`;
+    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
   }
 
   return req;
 });
 
-export const fetchPosts = () => API.get(routes.posts);
-export const createPost = newPost => API.post(routes.posts, newPost);
-export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
-export const deletePost = id => API.delete(`/posts/${id}`);
-export const likePost = id => API.patch(`/posts/${id}/likePost`);
+class PostApi {
+  getAll = async () => API.get(routes.posts);
+  create = async newPost => API.post(routes.posts, newPost);
+  update = async (id, updatedPost) => API.patch(`${routes.posts}/${id}`, updatedPost);
+  remove = async id => API.delete(`${routes.posts}/${id}`);
+  likeOne = async id => API.patch(`${routes.posts}/${id}/${routes.posts}`);
+}
 
-export const signIn = formData => API.post(routes.signin, formData);
-export const signUp = formData => API.post(routes.signup, formData);
+class AuthApi {
+  signIn = async formData => API.post(routes.signin, formData);
+  signUp = async formData => API.post(routes.signup, formData);
+}
+
+export { AuthApi, PostApi };

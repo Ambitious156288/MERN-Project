@@ -46,6 +46,7 @@ const Navbar = ({ handleOpen }) => {
 
   const logOut = () => {
     dispatch({ type: LOGOUT });
+    localStorage.clear(); // chyba tak
     history.push(routes.auth);
     setUser(null);
   };
@@ -68,7 +69,7 @@ const Navbar = ({ handleOpen }) => {
         color="secondary"
         aria-label="add"
         className={classes.fabButton}
-        // disabled={!user?.result}
+        disabled={!user?.result}
       >
         <AddIcon type="button" onClick={handleOpen} fontSize="large" color="primary" />
       </Fab>

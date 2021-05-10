@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 import PostMessage from "../models/postMessage.js";
 
-export const getPosts = async (req, res) => {
+export const getAll = async (req, res) => {
   try {
     const postMessage = await PostMessage.find();
 
@@ -13,7 +13,7 @@ export const getPosts = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
+export const create = async (req, res) => {
   const post = req.body;
 
   const newPost = new PostMessage({
@@ -31,7 +31,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const updatePost = async (req, res) => {
+export const update = async (req, res) => {
   const { id: _id } = req.params;
   const post = req.body;
 
@@ -49,7 +49,7 @@ export const updatePost = async (req, res) => {
   res.status(200).json(updatedPost);
 };
 
-export const deletePost = async (req, res) => {
+export const remove = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id))
@@ -60,7 +60,7 @@ export const deletePost = async (req, res) => {
   res.json({ message: " Post deleted" });
 };
 
-export const likePost = async (req, res) => {
+export const likeOne = async (req, res) => {
   const { id } = req.params;
 
   if (!req.userId) return res.json({ message: "Unauthenticated" });

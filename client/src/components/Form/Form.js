@@ -38,19 +38,8 @@ const StyledDiv = styled.div`
   text-align: right;
 `;
 
-const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onChange',
-  });
-  const onSubmit = data => {
-    alert(JSON.stringify(data));
-  };
-
+// Form.hooks.js
+const usePostForm = ({ currentId, setCurrentId, modalCloseFn }) => {
   const [postData, setPostData] = useState({
     title: '',
     description: '',
@@ -74,96 +63,139 @@ const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   };
 
   // const handleSubmit = e => {
-  // e.preventDefault();
+  //   e.preventDefault();
 
-  // if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
-  // else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+  //   if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
+  //   else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
 
-  // clear();
+  //   clear();
 
-  // modalCloseFn();
+  //   modalCloseFn();
   // };
 
-  return (
-    <StyledForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <StyledDiv>
-        <Button onClick={modalCloseFn}>
-          <QuitIcon />
-        </Button>
-      </StyledDiv>
+  const onSubmit = data => {
+    if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
+    else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
 
-      <br />
-      <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
-      <br />
-      <br />
+    clear();
 
-      <StyledTextField
-        name="title"
-        label="Title"
-        fullWidth
-        value={postData.title}
-        onChange={e => setPostData({ ...postData, title: e.target.value })}
-        inputRef={register({ required: true, minLength: 3 })}
-      />
-      <ErrorMessage error={errors.title} />
+    modalCloseFn();
+  };
 
-      <StyledTextField
-        name="description"
-        label="Description"
-        fullWidth
-        multiline
-        value={postData.description}
-        onChange={e => setPostData({ ...postData, description: e.target.value })}
-        inputRef={register({ required: true, minLength: 7 })}
-      />
-      <ErrorMessage error={errors.description} />
-
-      <StyledTextField
-        name="tags"
-        label="Tags"
-        fullWidth
-        multiline
-        value={postData.tags}
-        onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
-        inputRef={register({ required: true, minLength: 3 })}
-      />
-      <ErrorMessage error={errors.tags} />
-
-      <br />
-      <br />
-
-      <FileBase
-        type="file"
-        multiple={false}
-        onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
-      />
-
-      <br />
-      <br />
-
-      <StyledButton
-        variant="contained"
-        color="primary"
-        size="medium"
-        fontSize="medium"
-        type="submit"
-        fullWidth
-      >
-        Submit
-      </StyledButton>
-      <br />
-      <br />
-      <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
-        Clear
-      </Button>
-    </StyledForm>
-  );
+  return {
+    postData,
+    setPostData,
+    clear,
+    onSubmit,
+  };
 };
 
-Form.propTypes = {
-  currentId: PropTypes.any.isRequired,
-  setCurrentId: PropTypes.func.isRequired,
-  modalCloseFn: PropTypes.func.isRequired,
+// Form.component.js
+
+const FormView = ({
+  currentId,
+  modalCloseFn,
+  postData,
+  setPostData,
+  clear,
+  onSubmit,
+  register,
+  handleSubmit,
+  errors,
+}) => (
+  <StyledForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+    <StyledDiv>
+      <Button onClick={modalCloseFn}>
+        <QuitIcon />
+      </Button>
+    </StyledDiv>
+
+    <br />
+    <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
+    <br />
+    <br />
+
+    <StyledTextField
+      name="title"
+      label="Title"
+      fullWidth
+      value={postData.title}
+      onChange={e => setPostData({ ...postData, title: e.target.value })}
+      inputRef={register({ required: true, minLength: 3 })}
+    />
+    <ErrorMessage error={errors.title} />
+
+    <StyledTextField
+      name="description"
+      label="Description"
+      fullWidth
+      multiline
+      value={postData.description}
+      onChange={e => setPostData({ ...postData, description: e.target.value })}
+      inputRef={register({ required: true, minLength: 7 })}
+    />
+    <ErrorMessage error={errors.description} />
+
+    <StyledTextField
+      name="tags"
+      label="Tags"
+      fullWidth
+      multiline
+      value={postData.tags}
+      onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
+      inputRef={register({ required: true, minLength: 3 })}
+    />
+    <ErrorMessage error={errors.tags} />
+
+    <br />
+    <br />
+
+    <FileBase
+      type="file"
+      multiple={false}
+      onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
+    />
+
+    <br />
+    <br />
+
+    <StyledButton
+      variant="contained"
+      color="primary"
+      size="medium"
+      fontSize="medium"
+      type="submit"
+      fullWidth
+    >
+      Submit
+    </StyledButton>
+    <br />
+    <br />
+    <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
+      Clear
+    </Button>
+  </StyledForm>
+);
+
+const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
+  const { register, handleSubmit, errors } = useForm();
+
+  const { postData, setPostData, clear, onSubmit } = usePostForm();
+
+  return (
+    <FormView
+      currentId={currentId}
+      setCurrentId={setCurrentId}
+      modalCloseFn={modalCloseFn}
+      postData={postData}
+      setPostData={setPostData}
+      clear={clear}
+      onSubmit={onSubmit}
+      register={register}
+      handleSubmit={handleSubmit}
+      errors={errors}
+    />
+  );
 };
 
 export default Form;

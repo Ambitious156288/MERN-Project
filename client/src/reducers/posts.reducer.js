@@ -1,18 +1,18 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from 'constants/actionTypes';
+import { GET_ALL, CREATE, UPDATE, REMOVE, LIKEONE } from 'constants/actionTypes';
 
 const posts = (state = [], action) => {
   switch (action.type) {
-    case FETCH_ALL:
+    case GET_ALL:
       return action.payload;
 
     case CREATE:
       return [...state, action.payload];
 
     case UPDATE:
-    case LIKE:
+    case LIKEONE:
       return state.map(post => (post._id === action.payload._id ? action.payload : post));
 
-    case DELETE:
+    case REMOVE:
       return state.filter(post => post._id !== action.payload);
 
     default:

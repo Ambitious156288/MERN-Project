@@ -12,22 +12,14 @@ import { user } from 'constants/userConstant';
 
 import TablePagination from '@material-ui/core/TablePagination';
 
-const posts = [
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-  { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-];
+// const posts = [
+//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
+//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
+//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
+// ];
 
 const Posts = ({ setCurrentId, modalOpenFn }) => {
-  // const posts = useSelector(state => state.posts);
+  const posts = useSelector(state => state.posts);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -68,19 +60,17 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
         // rowsPerPageOptions={[5, 10, 25]}
       />
 
-      {/* {!posts.length ? (
+      {!posts.length ? (
         <LinearProgress />
-      ) : ( */}
-
-      <Grid container spacing={2}>
-        {posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((post, index) => (
-          <Grid key={index} item sm={6} xs={12}>
-            <Post post={post} setCurrentId={setCurrentId} modalOpenFn={modalOpenFn} />
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* )} */}
+      ) : (
+        <Grid container spacing={2}>
+          {posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((post, index) => (
+            <Grid key={index} item sm={6} xs={12}>
+              <Post post={post} setCurrentId={setCurrentId} modalOpenFn={modalOpenFn} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

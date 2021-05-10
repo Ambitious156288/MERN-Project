@@ -5,7 +5,7 @@ import { getPosts } from 'actions/posts.action';
 
 import Grow from '@material-ui/core/Grow';
 import Posts from 'components/Posts/Posts';
-import ModalFrom from 'components/ModalForm/ModalForm';
+import ModalForm from 'components/ModalForm/ModalForm';
 import Navbar from 'components/Navbar/Navbar';
 
 const Home = () => {
@@ -16,8 +16,7 @@ const Home = () => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
 
-  const [open, setOpen] = useState(true);
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -33,7 +32,7 @@ const Home = () => {
         <Posts setCurrentId={setCurrentId} modalOpenFn={() => handleOpen()} />
       </Grow>
 
-      <ModalFrom
+      <ModalForm
         open={open}
         handleClose={handleClose}
         currentId={currentId}
