@@ -12,12 +12,6 @@ import { user } from 'constants/userConstant';
 
 import TablePagination from '@material-ui/core/TablePagination';
 
-// const posts = [
-//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-//   { title: 'a', description: 'b', name: 'c', creator: 'd', tags: ['das', 'das'] },
-// ];
-
 const Posts = ({ setCurrentId, modalOpenFn }) => {
   const posts = useSelector(state => state.posts);
 
@@ -35,6 +29,7 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
 
   return (
     <>
+      {console.log(posts)}
       {!user?.result?.name && (
         <>
           <Alert severity="info">

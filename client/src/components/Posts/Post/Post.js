@@ -14,7 +14,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from 'actions/posts.action';
+import { remove, likeOne } from 'actions/posts.action';
 
 import Box from '@material-ui/core/Box';
 import Like from 'components/Like/Like';
@@ -128,13 +128,13 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
             size="small"
             color="primary"
             disabled={!user?.result}
-            onClick={() => dispatch(likePost(post._id))}
+            onClick={() => dispatch(likeOne(post._id))}
           >
             <Like post={post} />
           </Button>
 
           {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-            <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+            <Button size="small" color="primary" onClick={() => dispatch(remove(post._id))}>
               <DeleteForeverIcon fontSize="small" /> Delete
             </Button>
           )}

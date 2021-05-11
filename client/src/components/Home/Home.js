@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { getPosts } from 'actions/posts.action';
+import { getAll } from 'actions/posts.action';
 
 import Grow from '@material-ui/core/Grow';
 import Posts from 'components/Posts/Posts';
@@ -13,7 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(getAll());
   }, [currentId, dispatch]);
 
   const [open, setOpen] = useState(false);

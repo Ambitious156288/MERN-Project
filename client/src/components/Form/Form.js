@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import { useDispatch } from 'react-redux';
-import { createPost, updatePost } from 'actions/posts.action';
+import { create, update } from 'actions/posts.action';
 import { useSelector } from 'react-redux';
 
 import { user } from 'constants/userConstant';
@@ -38,8 +38,7 @@ const StyledDiv = styled.div`
   text-align: right;
 `;
 
-// Form.hooks.js
-const usePostForm = ({ currentId, setCurrentId, modalCloseFn }) => {
+const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
   const [postData, setPostData] = useState({
     title: '',
     description: '',
@@ -62,140 +61,91 @@ const usePostForm = ({ currentId, setCurrentId, modalCloseFn }) => {
     setPostData({ title: '', description: '', tags: '', selectedFile: '' });
   };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  //   if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
-  //   else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
-
-  //   clear();
-
-  //   modalCloseFn();
-  // };
-
-  const onSubmit = data => {
-    if (currentId === 0) dispatch(createPost({ ...postData, name: user?.result?.name }));
-    else dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+    if (currentId === 0) dispatch(create({ ...postData, name: user?.result?.name }));
+    else dispatch(update(currentId, { ...postData, name: user?.result?.name }));
 
     clear();
 
     modalCloseFn();
   };
 
-  return {
-    postData,
-    setPostData,
-    clear,
-    onSubmit,
-  };
+  return (
+    <StyledForm autoComplete="off" onSubmit={handleSubmit}>
+      <StyledDiv>
+        <Button onClick={modalCloseFn}>
+          <QuitIcon />
+        </Button>
+      </StyledDiv>
+
+      <br />
+      <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
+      <br />
+      <br />
+
+      <StyledTextField
+        name="title"
+        label="Title"
+        fullWidth
+        value={postData.title}
+        onChange={e => setPostData({ ...postData, title: e.target.value })}
+      />
+
+      <StyledTextField
+        name="description"
+        label="Description"
+        fullWidth
+        multiline
+        value={postData.description}
+        onChange={e => setPostData({ ...postData, description: e.target.value })}
+      />
+
+      <StyledTextField
+        name="tags"
+        label="Tags"
+        fullWidth
+        multiline
+        value={postData.tags}
+        onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
+      />
+
+      <br />
+      <br />
+
+      <FileBase
+        type="file"
+        multiple={false}
+        onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
+      />
+
+      <br />
+      <br />
+
+      <StyledButton
+        variant="contained"
+        color="primary"
+        size="medium"
+        fontSize="medium"
+        type="submit"
+        fullWidth
+      >
+        Submit
+      </StyledButton>
+      <br />
+      <br />
+      <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
+        Clear
+      </Button>
+    </StyledForm>
+  );
 };
 
-// Form.component.js
-
-const FormView = ({
-  currentId,
-  modalCloseFn,
-  postData,
-  setPostData,
-  clear,
-  onSubmit,
-  register,
-  handleSubmit,
-  errors,
-}) => (
-  <StyledForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-    <StyledDiv>
-      <Button onClick={modalCloseFn}>
-        <QuitIcon />
-      </Button>
-    </StyledDiv>
-
-    <br />
-    <Typography variant="h5">{currentId ? 'Editing' : 'Creating'} a Memorable Event</Typography>
-    <br />
-    <br />
-
-    <StyledTextField
-      name="title"
-      label="Title"
-      fullWidth
-      value={postData.title}
-      onChange={e => setPostData({ ...postData, title: e.target.value })}
-      inputRef={register({ required: true, minLength: 3 })}
-    />
-    <ErrorMessage error={errors.title} />
-
-    <StyledTextField
-      name="description"
-      label="Description"
-      fullWidth
-      multiline
-      value={postData.description}
-      onChange={e => setPostData({ ...postData, description: e.target.value })}
-      inputRef={register({ required: true, minLength: 7 })}
-    />
-    <ErrorMessage error={errors.description} />
-
-    <StyledTextField
-      name="tags"
-      label="Tags"
-      fullWidth
-      multiline
-      value={postData.tags}
-      onChange={e => setPostData({ ...postData, tags: e.target.value.split(',') })}
-      inputRef={register({ required: true, minLength: 3 })}
-    />
-    <ErrorMessage error={errors.tags} />
-
-    <br />
-    <br />
-
-    <FileBase
-      type="file"
-      multiple={false}
-      onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
-    />
-
-    <br />
-    <br />
-
-    <StyledButton
-      variant="contained"
-      color="primary"
-      size="medium"
-      fontSize="medium"
-      type="submit"
-      fullWidth
-    >
-      Submit
-    </StyledButton>
-    <br />
-    <br />
-    <Button variant="contained" color="secondary" size="medium" fontSize="medium" onClick={clear}>
-      Clear
-    </Button>
-  </StyledForm>
-);
-
-const Form = ({ currentId, setCurrentId, modalCloseFn }) => {
-  const { register, handleSubmit, errors } = useForm();
-
-  const { postData, setPostData, clear, onSubmit } = usePostForm();
-
-  return (
-    <FormView
-      currentId={currentId}
-      setCurrentId={setCurrentId}
-      modalCloseFn={modalCloseFn}
-      postData={postData}
-      setPostData={setPostData}
-      clear={clear}
-      onSubmit={onSubmit}
-      register={register}
-      handleSubmit={handleSubmit}
-      errors={errors}
-    />
-  );
+Form.propTypes = {
+  currentId: PropTypes.any.isRequired,
+  setCurrentId: PropTypes.func.isRequired,
+  modalCloseFn: PropTypes.func.isRequired,
 };
 
 export default Form;

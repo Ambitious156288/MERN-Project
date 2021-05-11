@@ -2,7 +2,7 @@ const routes = {
   home: '/',
 
   posts: '/posts',
-  likePost: 'likePost',
+  likeOne: 'likeOne',
   auth: '/auth',
 
   signin: '/user/signin',

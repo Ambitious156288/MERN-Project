@@ -1,69 +1,69 @@
 import { GET_ALL, CREATE, UPDATE, REMOVE, LIKEONE } from 'constants/actionTypes';
-import * as api from 'api';
+import { PostApi } from 'api';
 
-export const getPosts = () => async dispatch => {
+export const getAll = () => async dispatch => {
   try {
-    const { data } = await api.fetchPosts();
+    const { data } = await PostApi.getAll();
 
     dispatch({
       type: GET_ALL,
       payload: data,
     });
   } catch (err) {
-    console.log(err); // błedy nie logujemy w konsoli
+    return err;
   }
 };
 
-export const createPost = post => async dispatch => {
+export const create = post => async dispatch => {
   try {
-    const { data } = await api.createPost(post);
+    const { data } = await PostApi.create(post);
 
     dispatch({
       type: CREATE,
       payload: data,
     });
   } catch (err) {
-    console.log(err);
+    return err;
   }
 };
 
-export const updatePost = (id, post) => async dispatch => {
+export const update = (id, post) => async dispatch => {
   try {
-    const { data } = await api.updatePost(id, post);
+    const { data } = await PostApi.update(id, post);
 
     dispatch({
       type: UPDATE,
       payload: data,
     });
   } catch (err) {
-    console.log(err);
+    return err;
   }
 };
 
-export const deletePost = id => async dispatch => {
+export const remove = id => async dispatch => {
   try {
-    await api.deletePost(id);
+    await PostApi.remove(id);
 
     dispatch({
       type: REMOVE,
       payload: id,
     });
   } catch (err) {
-    console.log(err);
+    return err;
   }
 };
 
-export const likePost = id => async dispatch => {
+export const likeOne = id => async dispatch => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   try {
-    const { data } = await api.likePost(id, user?.token);
+    const { data } = await PostApi.likeOne(id, user?.token);
 
     dispatch({
       type: LIKEONE,
       payload: data,
     });
   } catch (err) {
-    console.log(err);
+    return err;
   }
 };
