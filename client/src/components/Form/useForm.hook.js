@@ -39,7 +39,7 @@ const useForm = ({ currentId, setCurrentId, modalCloseFn }) => {
     modalCloseFn();
   };
 
-  return { postData, clear, handleSubmit };
+  return { postData, setPostData, clear, handleSubmit };
 };
 
 export default useForm;
