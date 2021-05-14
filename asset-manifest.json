@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.5dc061fe.chunk.css",
-    "main.js": "/static/js/main.ed8a7973.chunk.js",
-    "main.js.map": "/static/js/main.ed8a7973.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d5f06370.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d5f06370.js.map",
-    "static/js/2.672348ec.chunk.js": "/static/js/2.672348ec.chunk.js",
-    "static/js/2.672348ec.chunk.js.map": "/static/js/2.672348ec.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.f6d327a36438c21899e25cf000f7780c.js": "/precache-manifest.f6d327a36438c21899e25cf000f7780c.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.5dc061fe.chunk.css.map": "/static/css/main.5dc061fe.chunk.css.map",
-    "static/js/2.672348ec.chunk.js.LICENSE.txt": "/static/js/2.672348ec.chunk.js.LICENSE.txt",
-    "static/media/defaultPostImage.jpg": "/static/media/defaultPostImage.c183954d.jpg"
+    "main.css": "/MERN-Project/static/css/main.5dc061fe.chunk.css",
+    "main.js": "/MERN-Project/static/js/main.ed8a7973.chunk.js",
+    "main.js.map": "/MERN-Project/static/js/main.ed8a7973.chunk.js.map",
+    "runtime-main.js": "/MERN-Project/static/js/runtime-main.07e5b636.js",
+    "runtime-main.js.map": "/MERN-Project/static/js/runtime-main.07e5b636.js.map",
+    "static/js/2.3c98ebb2.chunk.js": "/MERN-Project/static/js/2.3c98ebb2.chunk.js",
+    "static/js/2.3c98ebb2.chunk.js.map": "/MERN-Project/static/js/2.3c98ebb2.chunk.js.map",
+    "index.html": "/MERN-Project/index.html",
+    "precache-manifest.5b7bfedaa749ef53ff788ec8e84de472.js": "/MERN-Project/precache-manifest.5b7bfedaa749ef53ff788ec8e84de472.js",
+    "service-worker.js": "/MERN-Project/service-worker.js",
+    "static/css/main.5dc061fe.chunk.css.map": "/MERN-Project/static/css/main.5dc061fe.chunk.css.map",
+    "static/js/2.3c98ebb2.chunk.js.LICENSE.txt": "/MERN-Project/static/js/2.3c98ebb2.chunk.js.LICENSE.txt",
+    "static/media/defaultPostImage.jpg": "/MERN-Project/static/media/defaultPostImage.c183954d.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d5f06370.js",
-    "static/js/2.672348ec.chunk.js",
+    "static/js/runtime-main.07e5b636.js",
+    "static/js/2.3c98ebb2.chunk.js",
     "static/css/main.5dc061fe.chunk.css",
     "static/js/main.ed8a7973.chunk.js"
   ]
