@@ -17,6 +17,7 @@ export const signin = (formData, router) => async dispatch => {
     AuthAction(data, dispatch);
 
     AuthRules(data, router);
+    window.location.reload();
   } catch (err) {
     return err;
   }
@@ -32,5 +33,3 @@ export const signup = (formData, router) => async dispatch => {
     return err;
   }
 };
-
-//location.reload()

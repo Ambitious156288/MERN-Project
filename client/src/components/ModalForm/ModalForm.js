@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import Form from 'components/Form/Form';

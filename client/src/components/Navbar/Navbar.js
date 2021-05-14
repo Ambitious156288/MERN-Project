@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SnackbarHello from 'components/SnackbarHello/SnackbarHello';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import routes from 'constants/routes';
@@ -37,7 +37,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Navbar = ({ handleOpen }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const authUser = useSelector(({ auth }) => auth.user);
+
+  const [user, setUser] = useState(authUser);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -46,7 +48,7 @@ const Navbar = ({ handleOpen }) => {
 
   const logOut = () => {
     dispatch({ type: LOGOUT });
-    localStorage.clear(); // chyba tak
+    localStorage.clear();
     history.push(routes.auth);
     setUser(null);
   };
@@ -62,6 +64,10 @@ const Navbar = ({ handleOpen }) => {
 
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
+
+  // if (!user) {
+  //   return null;
+  // }
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>

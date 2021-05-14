@@ -8,12 +8,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Post from 'components/Posts/Post/Post';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import { user } from 'constants/userConstant';
-
 import TablePagination from '@material-ui/core/TablePagination';
 
 const Posts = ({ setCurrentId, modalOpenFn }) => {
   const posts = useSelector(state => state.posts);
+  const user = useSelector(({ auth }) => auth.user);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -29,7 +28,6 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
 
   return (
     <>
-      {console.log(posts)}
       {!user?.result?.name && (
         <>
           <Alert severity="info">

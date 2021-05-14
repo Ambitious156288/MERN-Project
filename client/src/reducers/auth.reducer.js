@@ -1,14 +1,33 @@
 import { AUTH, LOGOUT } from 'constants/actionTypes';
 
-const auth = (state = { authData: null }, action) => {
+const initialState = {
+  authData: { firstName: '', lastName: '', email: '', password: '' },
+  // isSignIn: false,
+  loading: true,
+  errors: null,
+  user: JSON.parse(localStorage.getItem('profile')),
+};
+
+const auth = (state = initialState, action) => {
   switch (action.type) {
     case AUTH:
-      // localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
-      return { ...state, authData: action.data, loading: false, errors: null };
+      return {
+        ...state,
+        authData: action.data,
+        // isSignIn: true,
+        loading: false,
+        errors: null,
+      };
 
     case LOGOUT:
-      // localStorage.clear();
-      return { ...state, authData: null, loading: false, errors: null };
+      return {
+        ...state,
+        authData: null,
+        // isSignIn: false,
+        loading: false,
+        errors: null,
+        user: null,
+      };
 
     default:
       return state;

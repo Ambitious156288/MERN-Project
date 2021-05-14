@@ -1,9 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
-import { user } from 'constants/userConstant';
-
 const Like = ({ post }) => {
+  const user = useSelector(({ auth }) => auth.user);
+
   if (post?.likes?.length > 0) {
     return post.likes.find(like => like === (user?.result?.googleId || user?.result?._id)) ? (
       <>

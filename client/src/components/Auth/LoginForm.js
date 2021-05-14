@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,34 +7,16 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+
 import Container from '@material-ui/core/Container';
 
+import 'components/Auth/OwlAnimation/Owl.styles.css';
 import Owl from './OwlAnimation/Owl';
 
 import { GoogleLogin } from 'react-google-login';
-
 import GoogleLoginIcon from '../../utils/svg/GoogleLoginIcon';
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import useStyles from './LoginForm.styles';
 
 // MVC
 
@@ -179,15 +160,6 @@ const LoginForm = ({
       </Container>
     </>
   );
-};
-
-LoginForm.propTypes = {
-  SignIn: PropTypes.bool.isRequired,
-  switchMode: PropTypes.func.isRequired,
-  googleSuccess: PropTypes.func.isRequired,
-  googleError: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -54,10 +54,8 @@ export const remove = id => async dispatch => {
 };
 
 export const likeOne = id => async dispatch => {
-  const user = JSON.parse(localStorage.getItem('profile'));
-
   try {
-    const { data } = await PostApi.likeOne(id, user?.token);
+    const { data } = await PostApi.likeOne(id);
 
     dispatch({
       type: LIKEONE,

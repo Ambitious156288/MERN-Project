@@ -13,13 +13,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { remove, likeOne } from 'actions/posts.action';
 
 import Box from '@material-ui/core/Box';
 import Like from 'components/Like/Like';
 
-import { user } from 'constants/userConstant';
 import defaultPostImage from 'utils/images/defaultPostImage.jpg';
 
 const useStyles = makeStyles({
@@ -74,7 +73,9 @@ const defaultProps = {
 
 const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
+
   const dispatch = useDispatch();
+  const user = useSelector(({ auth }) => auth.user);
 
   return (
     <>
