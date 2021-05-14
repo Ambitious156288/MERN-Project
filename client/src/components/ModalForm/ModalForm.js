@@ -3,23 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import Form from 'components/Form/Form';
 import Backdrop from '@material-ui/core/Backdrop';
-
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // margin: '20px',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+import useStyles from './ModalForm.styles';
 
 const ModalForm = ({ open, handleClose, currentId, setCurrentId }) => {
   const classes = useStyles();

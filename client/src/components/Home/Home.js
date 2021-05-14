@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
-
-import { useDispatch } from 'react-redux';
-import { getAll } from 'actions/posts.action';
-
+import React from 'react';
 import Grow from '@material-ui/core/Grow';
 import Posts from 'components/Posts/Posts';
 import ModalForm from 'components/ModalForm/ModalForm';
 import Navbar from 'components/Navbar/Navbar';
+import useHome from './useHome.hook';
 
 const Home = () => {
-  const [currentId, setCurrentId] = useState(0);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAll());
-  }, [currentId, dispatch]);
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { currentId, setCurrentId, open, handleOpen, handleClose } = useHome();
 
   return (
     <>

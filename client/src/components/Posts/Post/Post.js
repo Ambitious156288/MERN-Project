@@ -11,65 +11,15 @@ import CardActions from '@material-ui/core/CardActions';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { makeStyles } from '@material-ui/core/styles';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { remove, likeOne } from 'actions/posts.action';
 
 import Box from '@material-ui/core/Box';
 import Like from 'components/Like/Like';
-
 import defaultPostImage from 'utils/images/defaultPostImage.jpg';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
-    position: 'relative',
-  },
-  media: {
-    height: 0,
-    paddingTop: '37%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    backgroundBlendMode: 'darken',
-  },
-  overlay: {
-    position: 'absolute',
-    top: '20px',
-    left: '20px',
-    color: 'white',
-  },
-  overlay2: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
-  },
-  details: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '15px 0',
-  },
-  title: {},
-  cardActions: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
-
-const defaultProps = {
-  bgcolor: 'text.paper',
-  borderColor: 'primary.main',
-  m: 0.7,
-  border: 1,
-  padding: 0.5,
-};
+import { useStyles, defaultProps } from './Post.styles';
+import { theme } from 'theme/mainTheme';
 
 const Post = ({ post, setCurrentId, modalOpenFn }) => {
   const classes = useStyles();
@@ -95,7 +45,7 @@ const Post = ({ post, setCurrentId, modalOpenFn }) => {
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
             <Button
-              style={{ color: 'white' }}
+              style={{ color: theme.white }}
               onClick={() => {
                 setCurrentId(post._id);
                 modalOpenFn();

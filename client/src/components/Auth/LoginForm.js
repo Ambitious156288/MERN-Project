@@ -7,7 +7,6 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-
 import Container from '@material-ui/core/Container';
 
 import 'components/Auth/OwlAnimation/Owl.styles.css';
@@ -17,8 +16,6 @@ import { GoogleLogin } from 'react-google-login';
 import GoogleLoginIcon from '../../utils/svg/GoogleLoginIcon';
 
 import useStyles from './LoginForm.styles';
-
-// MVC
 
 const LoginForm = ({
   SignIn,
@@ -128,7 +125,7 @@ const LoginForm = ({
               {SignIn ? 'Sign Up' : 'Sign In'}
             </Button>
             <GoogleLogin
-              clientId="380805768864-4ljavc4m222jbchr27vs0k7cbrpmr3qs.apps.googleusercontent.com"
+              clientId={process.env.REACT_APP_GOOGLE_ID}
               render={renderProps => (
                 <Button
                   className={classes.googleButton}

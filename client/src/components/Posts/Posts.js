@@ -1,30 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
 import Post from 'components/Posts/Post/Post';
 import { Alert, AlertTitle } from '@material-ui/lab';
-
 import TablePagination from '@material-ui/core/TablePagination';
+import usePost from './usePost.hook';
 
 const Posts = ({ setCurrentId, modalOpenFn }) => {
-  const posts = useSelector(state => state.posts);
-  const user = useSelector(({ auth }) => auth.user);
-
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = event => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  const { posts, user, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = usePost();
 
   return (
     <>
@@ -50,7 +34,6 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
         onChangeRowsPerPage={handleChangeRowsPerPage}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[2, 10, { label: 'All', value: posts.length }]}
-        // rowsPerPageOptions={[5, 10, 25]}
       />
 
       {!posts.length ? (
