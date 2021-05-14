@@ -10,6 +10,8 @@ const ValidateMessage = styled.p`
   }
 `;
 
+// form validation soon !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 export default function ErrroMessage({ error }) {
   if (error) {
     switch (error.type) {

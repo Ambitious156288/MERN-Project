@@ -25,16 +25,18 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
 
       <br />
 
-      <TablePagination
-        labelRowsPerPage={'Posts per page:'}
-        component="div"
-        count={posts.length}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[2, 10, { label: 'All', value: posts.length }]}
-      />
+      {user?.result?.name && (
+        <TablePagination
+          labelRowsPerPage={'Posts per page:'}
+          component="div"
+          count={posts.length}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[2, 10, { label: 'All', value: posts.length }]}
+        />
+      )}
 
       {!posts.length ? (
         <LinearProgress />
