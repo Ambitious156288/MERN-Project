@@ -25,29 +25,31 @@ const Posts = ({ setCurrentId, modalOpenFn }) => {
 
       <br />
 
-      {user?.result?.name && (
-        <TablePagination
-          labelRowsPerPage={'Posts per page:'}
-          component="div"
-          count={posts.length}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[2, 10, { label: 'All', value: posts.length }]}
-        />
-      )}
-
       {!posts.length ? (
         <LinearProgress />
       ) : (
-        <Grid container spacing={2}>
-          {posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((post, index) => (
-            <Grid key={index} item sm={6} xs={12}>
-              <Post post={post} setCurrentId={setCurrentId} modalOpenFn={modalOpenFn} />
-            </Grid>
-          ))}
-        </Grid>
+        <>
+          <TablePagination
+            labelRowsPerPage={'Posts per page:'}
+            component="div"
+            count={posts.length}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+            rowsPerPage={rowsPerPage}
+            rowsPerPageOptions={[2, 10, { label: 'All', value: posts.length }]}
+          />
+
+          <Grid container spacing={2}>
+            {posts
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((post, index) => (
+                <Grid key={index} item sm={6} xs={12}>
+                  <Post post={post} setCurrentId={setCurrentId} modalOpenFn={modalOpenFn} />
+                </Grid>
+              ))}
+          </Grid>
+        </>
       )}
     </>
   );

@@ -21,7 +21,9 @@ const Navbar = ({ handleOpen }) => {
   const { user, logOut } = useNavbar();
 
   return (
+    // change logic !!!
     // if (!user) {
+    //   ...
     //   return null;
     // }
 
